@@ -1,2 +1,6 @@
 build/
 .cache/
+
+vendor/p4api/*
+!vendor/p4api/download.sh
+!vendor/p4api/download.ps1

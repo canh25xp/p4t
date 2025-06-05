@@ -23,10 +23,12 @@ message("OPENSSL_VERSION: ${OPENSSL_VERSION}")
 message("OPENSSL_INCLUDE_DIR: ${OPENSSL_INCLUDE_DIR}")
 message("OPENSSL_LIBRARIES: ${OPENSSL_LIBRARIES}")
 
+set(P4API vendor/p4api)
+
 file(GLOB_RECURSE INCLUDES include/**.h)
 file(GLOB_RECURSE SOURCES source/**.cpp)
 add_executable(p4t ${SOURCES})
 
-target_include_directories(p4t PRIVATE ${OPENSSL_INCLUDE_DIR} ./vendor/p4api/windows/include/p4)
-target_link_directories(p4t PRIVATE ./vendor/p4api/windows/lib)
+target_include_directories(p4t PRIVATE ${OPENSSL_INCLUDE_DIR} ${P4API}/include/p4)
+target_link_directories(p4t PRIVATE ${P4API}/lib)
 target_link_libraries(p4t PRIVATE client rpc supp OpenSSL::Crypto OpenSSL::SSL)
