@@ -1,0 +1,32 @@
+cmake_minimum_required(VERSION 3.15)
+ 
+project(
+    p4t
+    LANGUAGES CXX
+    VERSION 1.0
+    DESCRIPTION "P4 Tool"
+)
+
+# Generate compile_commands.json, will be used by lsp_server
+set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Find openssl on the system
+set(OPENSSL_ROOT_DIR "C:/msys64/mingw64") # NOTE: maybe different if you install msys2 else where
+set(OPENSSL_USE_STATIC_LIBS TRUE)
+find_package(OpenSSL REQUIRED)
+
+message("OPENSSL_FOUND: ${OPENSSL_FOUND}")
+message("OPENSSL_VERSION: ${OPENSSL_VERSION}")
+message("OPENSSL_INCLUDE_DIR: ${OPENSSL_INCLUDE_DIR}")
+message("OPENSSL_LIBRARIES: ${OPENSSL_LIBRARIES}")
+
+file(GLOB_RECURSE INCLUDES include/**.h)
+file(GLOB_RECURSE SOURCES source/**.cpp)
+add_executable(p4t ${SOURCES})
+
+target_include_directories(p4t PRIVATE ${OPENSSL_INCLUDE_DIR} ./vendor/p4api/windows/include/p4)
+target_link_directories(p4t PRIVATE ./vendor/p4api/windows/lib)
+target_link_libraries(p4t PRIVATE client rpc supp OpenSSL::Crypto OpenSSL::SSL)
