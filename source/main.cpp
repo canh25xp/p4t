@@ -1,27 +1,26 @@
-/*
- * p4api.cc - a p4 client API example
- *
- * This file is part of the p4api distribution package.
- *
- * This barebones example simply mimics the regular p4 command line
- * program.
- *
- * Generally, compiling with the C++ compiler and linking with the
- * three provided libraries is sufficient to build this sample program.
- *
- * See the Perforce C/C++ API User's Guide for further information.
- * https://www.perforce.com/manuals/p4api/Content/P4API/Home-p4api.html
- *
- * $Id: //depot/r25.1/p4/api/p4api.cc#1 $
- */
+#include <CLI/CLI.hpp>
 
-#include "clientapi.h"
-#include "p4libs.h"
+#include <clientapi.h>
+#include <p4libs.h>
 
 int main(int argc, char **argv);
 int main(int argc, char **argv) {
+    CLI::App app("p4 tool");
+
+    argv = app.ensure_utf8(argv);
+
+    std::string user = "";
+    std::string port = "";
+    std::string client = "";
+
+    app.add_option("-u,--user", user, "P4USER");
+    app.add_option("-p,--port", port, "P4PORT");
+    app.add_option("-c,--api", client, "P4CLIENT");
+
+    CLI11_PARSE(app, argc, argv);
+
     ClientUser ui;
-    ClientApi client;
+    ClientApi api;
     StrBuf msg;
     Error e;
 
@@ -33,16 +32,7 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    // Any special protocol mods
-
-    // client.SetProtocol( "tag" );
-
-    // Enable client-side Extensions
-    // client.EnableExtensions();
-
-    // Connect to server
-
-    client.Init(&e);
+    api.Init(&e);
 
     if (e.Test()) {
         e.Fmt(&msg);
@@ -51,13 +41,10 @@ int main(int argc, char **argv) {
     }
 
     // Run the command "argv[1] argv[2...]"
+    api.SetArgv(argc - 2, argv + 2);
+    api.Run("info", &ui);
 
-    client.SetArgv(argc - 2, argv + 2);
-    client.Run(argv[1], &ui);
-
-    // Close connection
-
-    client.Final(&e);
+    api.Final(&e);
 
     if (e.Test()) {
         e.Fmt(&msg);
