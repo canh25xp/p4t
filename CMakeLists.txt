@@ -37,11 +37,16 @@ if (NOT P4API_ROOT_DIR )
     message("P4API_ROOT_DIR:" ${P4API_ROOT_DIR})
 endif()
 
+if(NOT DEFINED CLI11_ROOT_DIR)
+    set (CLI11_ROOT_DIR "./vendor/CLI11" CACHE STRING "CLI11 git repository")
+    message("CLI11_ROOT_DIR:" ${CLI11_ROOT_DIR})
+endif()
+
 file(GLOB_RECURSE INCLUDES include/**.h)
 file(GLOB_RECURSE SOURCES source/**.cpp)
 add_executable(p4t ${SOURCES})
 
-target_include_directories(p4t PRIVATE ${OPENSSL_INCLUDE_DIR} ${P4API_ROOT_DIR}/include/p4 vendor/CLI11/include)
+target_include_directories(p4t PRIVATE ${OPENSSL_INCLUDE_DIR} ${P4API_ROOT_DIR}/include/p4 ${CLI11_ROOT_DIR}/include)
 target_link_directories(p4t PRIVATE ${P4API_ROOT_DIR}/lib)
 
 if (MSVC)
