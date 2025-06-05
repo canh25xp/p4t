@@ -31,7 +31,12 @@
       }
     },
     {
-      "name": "msvc",
+      "name": "msvc2017",
+      "generator": "Visual Studio 15 2017",
+      "binaryDir": "${sourceDir}/build"
+    },
+    {
+      "name": "msvc2022",
       "generator": "Visual Studio 17 2022",
       "binaryDir": "${sourceDir}/build"
     },
@@ -60,8 +65,12 @@
       "configurePreset": "ninja-release"
     },
     {
-      "name": "msvc",
-      "configurePreset": "msvc"
+      "name": "msvc2017",
+      "configurePreset": "msvc2017"
+    },
+    {
+      "name": "msvc2022",
+      "configurePreset": "msvc2022"
     },
     {
       "name": "unix-make",
