@@ -34,7 +34,19 @@
       }
     },
     {
-      "name": "msvc2017",
+      "name": "msvc2017-debug",
+      "generator": "Visual Studio 15 2017",
+      "binaryDir": "${sourceDir}/build",
+      "architecture": {
+        "value": "x64"
+      },
+      "cacheVariables": {
+        "OPENSSL_ROOT_DIR": "C:/Program Files/FireDaemon OpenSSL 3",
+        "P4API_ROOT_DIR": "vendor/p4api/p4api-2025.1.2761706-vs2017_static-vsdebug"
+      }
+    },
+    {
+      "name": "msvc2017-release",
       "generator": "Visual Studio 15 2017",
       "binaryDir": "${sourceDir}/build",
       "architecture": {
@@ -46,7 +58,19 @@
       }
     },
     {
-      "name": "msvc2022",
+      "name": "msvc2022-debug",
+      "generator": "Visual Studio 17 2022",
+      "binaryDir": "${sourceDir}/build",
+      "architecture": {
+        "value": "x64"
+      },
+      "cacheVariables": {
+        "OPENSSL_ROOT_DIR": "C:/Program Files/FireDaemon OpenSSL 3",
+        "P4API_ROOT_DIR": "vendor/p4api/p4api-2025.1.2761706-vs2022_static_vsdebug"
+      }
+    },
+    {
+      "name": "msvc2022-release",
       "generator": "Visual Studio 17 2022",
       "binaryDir": "${sourceDir}/build",
       "architecture": {
@@ -91,22 +115,22 @@
     },
     {
       "name": "msvc2017-debug",
-      "configurePreset": "msvc2017",
+      "configurePreset": "msvc2017-debug",
       "configuration": "Debug"
     },
     {
       "name": "msvc2017-release",
-      "configurePreset": "msvc2017",
+      "configurePreset": "msvc2017-release",
       "configuration": "Release"
     },
     {
       "name": "msvc2022-debug",
-      "configurePreset": "msvc2022",
+      "configurePreset": "msvc2022-debug",
       "configuration": "Debug"
     },
     {
       "name": "msvc2022-release",
-      "configurePreset": "msvc2022",
+      "configurePreset": "msvc2022-release",
       "configuration": "Release"
     },
     {
