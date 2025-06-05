@@ -50,7 +50,13 @@ target_include_directories(p4t PRIVATE ${OPENSSL_INCLUDE_DIR} ${P4API_ROOT_DIR}/
 target_link_directories(p4t PRIVATE ${P4API_ROOT_DIR}/lib)
 
 if (MSVC)
-    target_link_options(p4t PUBLIC /NODEFAULTLIB:libcmt.lib)
+    # NOTE: I'm not sure if these lines below are the same, so better to keep all
+    # add_compile_options("/MT$<$<CONFIG:Debug>:d>")
+    set_property(TARGET p4t PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+    # set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+
+    # WARN: Not sure what does this do, just saw it some where, known to cause build error
+    # target_link_options(p4t PUBLIC /NODEFAULTLIB:libcmt.lib)
     target_link_libraries(p4t PRIVATE libclient librpc libsupp libp4api libp4script libp4script_c libp4script_cstub libp4script_curl libp4script_sqlite)
 else()
     target_link_libraries(p4t PRIVATE client rpc supp)
