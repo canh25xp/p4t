@@ -23,7 +23,7 @@ if (NOT OPENSSL_ROOT_DIR)
         set(OPENSSL_ROOT_DIR "C:/Program Files/FireDaemon OpenSSL 3")
     endif()
 endif()
-message("OPENSSL_ROOT_DIR: ${OPENSSL_FOUND}")
+message("OPENSSL_ROOT_DIR: ${OPENSSL_ROOT_DIR}")
 set(OPENSSL_USE_STATIC_LIBS TRUE)
 find_package(OpenSSL REQUIRED)
 
