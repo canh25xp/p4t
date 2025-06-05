@@ -41,7 +41,7 @@ file(GLOB_RECURSE INCLUDES include/**.h)
 file(GLOB_RECURSE SOURCES source/**.cpp)
 add_executable(p4t ${SOURCES})
 
-target_include_directories(p4t PRIVATE ${OPENSSL_INCLUDE_DIR} ${P4API_ROOT_DIR}/include/p4)
+target_include_directories(p4t PRIVATE ${OPENSSL_INCLUDE_DIR} ${P4API_ROOT_DIR}/include/p4 vendor/CLI11/include)
 target_link_directories(p4t PRIVATE ${P4API_ROOT_DIR}/lib)
 
 if (MSVC)
