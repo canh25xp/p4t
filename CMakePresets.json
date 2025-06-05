@@ -33,22 +33,34 @@
     {
       "name": "msvc2017",
       "generator": "Visual Studio 15 2017",
-      "binaryDir": "${sourceDir}/build"
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "OPENSSL_ROOT_DIR": "C:/Program Files/FireDaemon OpenSSL 3"
+      }
     },
     {
       "name": "msvc2022",
       "generator": "Visual Studio 17 2022",
-      "binaryDir": "${sourceDir}/build"
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "OPENSSL_ROOT_DIR": "C:/Program Files/FireDaemon OpenSSL 3"
+      }
     },
     {
       "name": "unix-make",
       "generator": "Unix Makefiles",
-      "binaryDir": "${sourceDir}/build"
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "OPENSSL_ROOT_DIR": "/usr/local"
+      }
     },
     {
       "name": "mingw-make",
       "generator": "MinGW Makefiles",
-      "binaryDir": "${sourceDir}/build"
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "OPENSSL_ROOT_DIR": "C:/msys64/mingw64"
+      }
     }
   ],
   "buildPresets": [
