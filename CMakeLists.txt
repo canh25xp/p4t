@@ -14,7 +14,16 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Find openssl on the system
-set(OPENSSL_ROOT_DIR "C:/msys64/mingw64") # NOTE: maybe different if you install msys2 else where
+if (NOT OPENSSL_ROOT_DIR)
+    if (UNIX)
+        set(OPENSSL_ROOT_DIR "/usr/local")
+    elseif (WIN32)
+        set(OPENSSL_ROOT_DIR "C:/msys64/mingw64")
+    elseif (MSVC)
+        set(OPENSSL_ROOT_DIR "C:/Program Files/FireDaemon OpenSSL 3")
+    endif()
+endif()
+message("OPENSSL_ROOT_DIR: ${OPENSSL_FOUND}")
 set(OPENSSL_USE_STATIC_LIBS TRUE)
 find_package(OpenSSL REQUIRED)
 
