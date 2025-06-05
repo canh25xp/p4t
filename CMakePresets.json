@@ -37,6 +37,9 @@
       "name": "msvc2017",
       "generator": "Visual Studio 15 2017",
       "binaryDir": "${sourceDir}/build",
+      "architecture": {
+        "value": "x64"
+      },
       "cacheVariables": {
         "OPENSSL_ROOT_DIR": "C:/Program Files/FireDaemon OpenSSL 3",
         "P4API_ROOT_DIR": "vendor/p4api/p4api-2025.1.2761706-vs2017_static"
@@ -46,6 +49,9 @@
       "name": "msvc2022",
       "generator": "Visual Studio 17 2022",
       "binaryDir": "${sourceDir}/build",
+      "architecture": {
+        "value": "x64"
+      },
       "cacheVariables": {
         "OPENSSL_ROOT_DIR": "C:/Program Files/FireDaemon OpenSSL 3",
         "P4API_ROOT_DIR": "vendor/p4api/p4api-2025.1.2761706-vs2022_static"
