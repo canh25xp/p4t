@@ -90,12 +90,24 @@
       "configurePreset": "ninja-release"
     },
     {
-      "name": "msvc2017",
-      "configurePreset": "msvc2017"
+      "name": "msvc2017-debug",
+      "configurePreset": "msvc2017",
+      "configuration": "Debug"
     },
     {
-      "name": "msvc2022",
-      "configurePreset": "msvc2022"
+      "name": "msvc2017-release",
+      "configurePreset": "msvc2017",
+      "configuration": "Release"
+    },
+    {
+      "name": "msvc2022-debug",
+      "configurePreset": "msvc2022",
+      "configuration": "Debug"
+    },
+    {
+      "name": "msvc2022-release",
+      "configurePreset": "msvc2022",
+      "configuration": "Release"
     },
     {
       "name": "unix-make",
