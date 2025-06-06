@@ -44,7 +44,7 @@ add_executable(p4t ${SOURCES})
 add_subdirectory(vendor)
 
 target_include_directories(p4t PRIVATE
-    ${P4API_ROOT_DIR}/include/p4
+    ${P4API_ROOT_DIR}/include
     include
 )
 

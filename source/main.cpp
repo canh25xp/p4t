@@ -1,7 +1,7 @@
 #include <CLI/CLI.hpp>
 
-#include <clientapi.h>
-#include <p4libs.h>
+#include <p4/clientapi.h>
+#include <p4/p4libs.h>
 
 int main(int argc, char **argv);
 int main(int argc, char **argv) {
