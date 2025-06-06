@@ -1,10 +1,14 @@
 {
-  "version": 6,
+  "version": 10,
   "cmakeMinimumRequired": {
     "major": 3,
     "minor": 15,
     "patch": 0
   },
+  "$comment": [
+    "https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html",
+    "Currently msvc presets is not working well due to multithreading",
+  ],
   "configurePresets": [
     {
       "name": "default",
