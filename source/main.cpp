@@ -3,6 +3,7 @@
 #include <CLI/CLI.hpp>
 #include <dbg.h>
 
+#include "log.h"
 #include "p4t.h"
 #include "thread_pool.h"
 
@@ -34,6 +35,10 @@ int main(int argc, char **argv) {
     std::signal(SIGINT, SignalHandler);
     std::signal(SIGTERM, SignalHandler);
 
+    P4T::P4USER = user;
+    P4T::P4PORT = port;
+    P4T::P4CLIENT = client;
+
     const Error &e = P4T().TestConnection(5).GetError();
     bool ok = e.IsError() == 0;
     if (ok) {
@@ -41,6 +46,20 @@ int main(int argc, char **argv) {
     } else {
         ERROR("Error occurred while connecting to " << P4T::P4PORT);
         return 1;
+    }
+
+    P4T::ClientSpec = P4T().Client().GetClientSpec();
+
+    auto name = P4T::ClientSpec.client;
+    auto views = P4T::ClientSpec.mapping;
+
+    if (views.empty()) {
+        WARN("Client " << name << " is empty.");
+    } else {
+        PRINT("Client " << name << " has " << views.size() << " mappings");
+        for (auto view : views) {
+            PRINT(view);
+        }
     }
 
     if (!P4T::ShutdownLibraries()) {
