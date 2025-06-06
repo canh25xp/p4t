@@ -82,19 +82,41 @@
       }
     },
     {
-      "name": "make",
+      "name": "make-debug",
       "generator": "Unix Makefiles",
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
         "OPENSSL_ROOT_DIR": "/usr/local",
         "P4API_ROOT_DIR": "vendor/p4api/p4api-2025.1.2761706"
       }
     },
     {
-      "name": "mingw-make",
+      "name": "make-release",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "OPENSSL_ROOT_DIR": "/usr/local",
+        "P4API_ROOT_DIR": "vendor/p4api/p4api-2025.1.2761706"
+      }
+    },
+    {
+      "name": "mingw-make-debug",
       "generator": "MinGW Makefiles",
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "OPENSSL_ROOT_DIR": "C:/msys64/mingw64",
+        "P4API_ROOT_DIR": "vendor/p4api/p4api-2025.1.2761706"
+      }
+    },
+    {
+      "name": "mingw-make-release",
+      "generator": "MinGW Makefiles",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
         "OPENSSL_ROOT_DIR": "C:/msys64/mingw64",
         "P4API_ROOT_DIR": "vendor/p4api/p4api-2025.1.2761706"
       }
@@ -134,12 +156,20 @@
       "configuration": "Release"
     },
     {
-      "name": "make",
-      "configurePreset": "make"
+      "name": "make-debug",
+      "configurePreset": "make-debug"
     },
     {
-      "name": "mingw-make",
-      "configurePreset": "mingw-make"
+      "name": "make-release",
+      "configurePreset": "make-release"
+    },
+    {
+      "name": "mingw-make-debug",
+      "configurePreset": "mingw-make-debug"
+    },
+    {
+      "name": "mingw-make-release",
+      "configurePreset": "mingw-make-release"
     }
   ],
   "workflowPresets": [
@@ -209,15 +239,54 @@
       ]
     },
     {
-      "name": "mingw-make",
+      "name": "make-debug",
       "steps": [
         {
           "type": "configure",
-          "name": "mingw-make"
+          "name": "make-debug"
         },
         {
           "type": "build",
-          "name": "mingw-make"
+          "name": "make-debug"
+        }
+      ]
+    },
+    {
+      "name": "make-release",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "make-release"
+        },
+        {
+          "type": "build",
+          "name": "make-release"
+        }
+      ]
+    },
+    {
+      "name": "mingw-make-debug",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "mingw-make-debug"
+        },
+        {
+          "type": "build",
+          "name": "mingw-make-debug"
+        }
+      ]
+    },
+    {
+      "name": "mingw-make-release",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "mingw-make-release"
+        },
+        {
+          "type": "build",
+          "name": "mingw-make-release"
         }
       ]
     }
