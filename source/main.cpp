@@ -1,4 +1,5 @@
 #include <CLI/CLI.hpp>
+#include <dbg.h>
 
 #include <p4/clientapi.h>
 #include <p4/p4libs.h>
@@ -15,9 +16,11 @@ int main(int argc, char **argv) {
 
     app.add_option("-u,--user", user, "P4USER");
     app.add_option("-p,--port", port, "P4PORT");
-    app.add_option("-c,--api", client, "P4CLIENT");
+    app.add_option("-c,--client", client, "P4CLIENT");
 
     CLI11_PARSE(app, argc, argv);
+
+    dbg(user, port, client);
 
     ClientUser ui;
     ClientApi api;
