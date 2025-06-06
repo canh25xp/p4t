@@ -52,13 +52,19 @@ target_link_directories(p4t PRIVATE ${P4API_ROOT_DIR}/lib)
 if (MSVC)
     # NOTE: I'm not sure if these lines below are the same, so better to keep all
     # add_compile_options("/MT$<$<CONFIG:Debug>:d>")
-    set_property(TARGET p4t PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
     # set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+    # Compile with /MT flag for release and /MTd for debug.
+    # Do not use /MD or /MDd
+    set_property(TARGET p4t PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
     # WARN: Not sure what does this do, just saw it some where, known to cause build error
     # target_link_options(p4t PUBLIC /NODEFAULTLIB:libcmt.lib)
     # target_compile_definitions(p4t PUBLIC OS_NT CASE_INSENSITIVE)
     target_link_libraries(p4t PRIVATE libclient librpc libsupp libp4api libp4script libp4script_c libp4script_cstub libp4script_curl libp4script_sqlite)
+
+    # https://help.perforce.com/helix-core/apis/p4api/current/Content/P4API/client.programming.compiling.html#Compiling_and_linking_P4_Server_applications
+    # Although the  document instructs us to link with these lib, but it seems to work just fine without them.
+    # target_link_libraries(p4t PRIVATE libcmt oldnames kernel32 ws2_32 advapi32)
 else()
     target_link_libraries(p4t PRIVATE client rpc supp)
 endif()
