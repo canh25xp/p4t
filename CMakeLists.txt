@@ -77,4 +77,4 @@ else()
     target_link_libraries(p4t PRIVATE client rpc supp)
 endif()
 
-target_link_libraries(p4t PRIVATE OpenSSL::Crypto OpenSSL::SSL CLI11::CLI11)
+target_link_libraries(p4t PRIVATE OpenSSL::Crypto OpenSSL::SSL CLI11::CLI11 dbg_macro)
