@@ -39,7 +39,7 @@ endif()
 
 file(GLOB_RECURSE INCLUDES include/**.h)
 file(GLOB_RECURSE SOURCES source/**.cpp)
-add_executable(p4t ${SOURCES})
+add_executable(p4t ${SOURCES} ${INCLUDES})
 
 add_subdirectory(vendor)
 
