@@ -1,7 +1,12 @@
+#include <csignal>
+
 #include <CLI/CLI.hpp>
 #include <dbg.h>
 
 #include "p4t.h"
+#include "thread_pool.h"
+
+void SignalHandler(sig_atomic_t s);
 
 int main(int argc, char **argv);
 int main(int argc, char **argv) {
@@ -25,6 +30,10 @@ int main(int argc, char **argv) {
         return 1;
     }
 
+    // Set the signal here because it gets reset after P4API library is initialized
+    std::signal(SIGINT, SignalHandler);
+    std::signal(SIGTERM, SignalHandler);
+
     const Error &e = P4T().TestConnection(5).GetError();
     bool ok = e.IsError() == 0;
     if (ok) {
@@ -39,4 +48,19 @@ int main(int argc, char **argv) {
     }
 
     return 0;
+}
+
+void SignalHandler(sig_atomic_t s) {
+    static bool called = false;
+    if (called) {
+        WARN("Already received an interrupt signal, waiting for threads to shutdown.");
+        return;
+    }
+    called = true;
+
+    ERROR("Signal Received: " << strsignal(s));
+
+    ThreadPool::GetSingleton()->ShutDown();
+
+    std::exit(s);
 }
