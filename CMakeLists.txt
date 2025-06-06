@@ -46,7 +46,15 @@ file(GLOB_RECURSE INCLUDES include/**.h)
 file(GLOB_RECURSE SOURCES source/**.cpp)
 add_executable(p4t ${SOURCES})
 
-target_include_directories(p4t PRIVATE ${OPENSSL_INCLUDE_DIR} ${P4API_ROOT_DIR}/include/p4 ${CLI11_ROOT_DIR}/include)
+add_subdirectory(vendor)
+
+target_include_directories(p4t PRIVATE
+    ${OPENSSL_INCLUDE_DIR}
+    ${P4API_ROOT_DIR}/include/p4
+    ${CLI11_ROOT_DIR}/include
+    include
+)
+
 target_link_directories(p4t PRIVATE ${P4API_ROOT_DIR}/lib)
 
 if (MSVC)
@@ -68,4 +76,5 @@ if (MSVC)
 else()
     target_link_libraries(p4t PRIVATE client rpc supp)
 endif()
-target_link_libraries(p4t PRIVATE OpenSSL::Crypto OpenSSL::SSL)
+
+target_link_libraries(p4t PRIVATE OpenSSL::Crypto OpenSSL::SSL CLI11::CLI11)
