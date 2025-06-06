@@ -42,7 +42,7 @@
       },
       "cacheVariables": {
         "OPENSSL_ROOT_DIR": "C:/Program Files/FireDaemon OpenSSL 3",
-        "P4API_ROOT_DIR": "vendor/p4api/p4api-2025.1.2761706-vs2017_static-vsdebug"
+        "P4API_ROOT_DIR": "vendor/p4api/p4api-2025.1.2761706-vs2017_static_vsdebug"
       }
     },
     {
@@ -157,6 +157,19 @@
       ]
     },
     {
+      "name": "msvc2017-debug",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "msvc2017-debug"
+        },
+        {
+          "type": "build",
+          "name": "msvc2017-debug"
+        }
+      ]
+    },
+    {
       "name": "msvc2017-release",
       "steps": [
         {
@@ -166,6 +179,32 @@
         {
           "type": "build",
           "name": "msvc2017-release"
+        }
+      ]
+    },
+    {
+      "name": "msvc2022-debug",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "msvc2022-debug"
+        },
+        {
+          "type": "build",
+          "name": "msvc2022-debug"
+        }
+      ]
+    },
+    {
+      "name": "msvc2022-release",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "msvc2022-release"
+        },
+        {
+          "type": "build",
+          "name": "msvc2022-release"
         }
       ]
     }
