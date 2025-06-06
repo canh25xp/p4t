@@ -9,6 +9,10 @@
 
 void SignalHandler(sig_atomic_t s);
 
+#ifdef _WIN32
+const char* strsignal(int sig);
+#endif
+
 int main(int argc, char **argv);
 int main(int argc, char **argv) {
     CLI::App app("p4 tool");
@@ -68,6 +72,20 @@ int main(int argc, char **argv) {
 
     return 0;
 }
+
+#ifdef _WIN32
+const char* strsignal(int sig) {
+    switch (sig) {
+        case SIGINT: return "Interrupt";
+        case SIGABRT: return "Abort";
+        case SIGFPE: return "Floating point exception";
+        case SIGILL: return "Illegal instruction";
+        case SIGSEGV: return "Segmentation fault";
+        case SIGTERM: return "Termination request";
+        default: return "Unknown signal";
+    }
+}
+#endif
 
 void SignalHandler(sig_atomic_t s) {
     static bool called = false;
