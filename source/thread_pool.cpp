@@ -6,132 +6,110 @@
 
 #include "minitrace.h"
 
-ThreadPool* ThreadPool::GetSingleton()
-{
-	static ThreadPool singleton;
-	return &singleton;
+ThreadPool *ThreadPool::GetSingleton() {
+    static ThreadPool singleton;
+    return &singleton;
 }
 
-void ThreadPool::AddJob(Job function)
-{
-	{
-		std::unique_lock<std::mutex> lock(m_JobsMutex);
-		m_Jobs.push_back(function);
-		m_JobsProcessing++;
-	}
-	m_CV.notify_one();
+void ThreadPool::AddJob(Job function) {
+    {
+        std::unique_lock<std::mutex> lock(m_JobsMutex);
+        m_Jobs.push_back(function);
+        m_JobsProcessing++;
+    }
+    m_CV.notify_one();
 }
 
-void ThreadPool::Wait()
-{
-	while (true)
-	{
-		if (m_JobsProcessing == 0)
-		{
-			return;
-		}
-	}
+void ThreadPool::Wait() {
+    while (true) {
+        if (m_JobsProcessing == 0) {
+            return;
+        }
+    }
 }
 
-void ThreadPool::RaiseCaughtExceptions()
-{
-	std::unique_lock<std::mutex> lock(m_ThreadExceptionsMutex);
+void ThreadPool::RaiseCaughtExceptions() {
+    std::unique_lock<std::mutex> lock(m_ThreadExceptionsMutex);
 
-	for (auto& exceptionPtr : m_ThreadExceptions)
-	{
-		if (exceptionPtr)
-		{
-			std::rethrow_exception(exceptionPtr);
-		}
-	}
+    for (auto &exceptionPtr : m_ThreadExceptions) {
+        if (exceptionPtr) {
+            std::rethrow_exception(exceptionPtr);
+        }
+    }
 }
 
-void ThreadPool::ShutDown()
-{
-	if (m_HasShutDownBeenCalled)
-	{
-		return;
-	}
-	m_HasShutDownBeenCalled = true;
+void ThreadPool::ShutDown() {
+    if (m_HasShutDownBeenCalled) {
+        return;
+    }
+    m_HasShutDownBeenCalled = true;
 
-	{
-		std::unique_lock<std::mutex> lock(m_JobsMutex);
-		m_ShouldStop = true;
-	}
-	m_CV.notify_all();
+    {
+        std::unique_lock<std::mutex> lock(m_JobsMutex);
+        m_ShouldStop = true;
+    }
+    m_CV.notify_all();
 
-	for (auto& thread : m_Threads)
-	{
-		thread.join();
-	}
+    for (auto &thread : m_Threads) {
+        thread.join();
+    }
 
-	m_Threads.clear();
-	m_ThreadExceptions.clear();
-	m_ThreadNames.clear();
-	m_P4Contexts.clear();
+    m_Threads.clear();
+    m_ThreadExceptions.clear();
+    m_ThreadNames.clear();
+    m_P4Contexts.clear();
 
-	INFO("Thread pool shut down successfully");
+    INFO("Thread pool shut down successfully");
 }
 
-void ThreadPool::Resize(int size)
-{
-	ShutDown();
-	Initialize(size);
+void ThreadPool::Resize(int size) {
+    ShutDown();
+    Initialize(size);
 }
 
-void ThreadPool::Initialize(int size)
-{
-	m_HasShutDownBeenCalled = false;
-	m_ShouldStop = false;
-	m_JobsProcessing = 0;
+void ThreadPool::Initialize(int size) {
+    m_HasShutDownBeenCalled = false;
+    m_ShouldStop = false;
+    m_JobsProcessing = 0;
 
-	m_P4Contexts.resize(size);
+    m_P4Contexts.resize(size);
 
-	for (int i = 0; i < size; i++)
-	{
-		m_ThreadExceptions.push_back(nullptr);
-		m_ThreadNames.push_back("Worker #" + std::to_string(i));
-		m_Threads.push_back(std::thread([this, i]()
-		    {
-			    MTR_META_THREAD_NAME(m_ThreadNames.at(i).c_str());
+    for (int i = 0; i < size; i++) {
+        m_ThreadExceptions.push_back(nullptr);
+        m_ThreadNames.push_back("Worker #" + std::to_string(i));
+        m_Threads.push_back(std::thread([this, i]() {
+            MTR_META_THREAD_NAME(m_ThreadNames.at(i).c_str());
 
-			    P4T* localP4 = &m_P4Contexts[i];
+            P4T *localP4 = &m_P4Contexts[i];
 
-			    while (true)
-			    {
-				    Job job;
-				    {
-					    std::unique_lock<std::mutex> lock(m_JobsMutex);
+            while (true) {
+                Job job;
+                {
+                    std::unique_lock<std::mutex> lock(m_JobsMutex);
 
-					    m_CV.wait(lock, [this]()
-					        { return !m_Jobs.empty() || m_ShouldStop; });
+                    m_CV.wait(lock, [this]() { return !m_Jobs.empty() || m_ShouldStop; });
 
-					    if (m_ShouldStop)
-					    {
-						    break;
-					    }
+                    if (m_ShouldStop) {
+                        break;
+                    }
 
-					    job = m_Jobs.front();
-					    m_Jobs.pop_front();
-				    }
+                    job = m_Jobs.front();
+                    m_Jobs.pop_front();
+                }
 
-				    try
-				    {
-					    job(localP4);
-				    }
-				    catch (const std::exception& e)
-				    {
-					    std::unique_lock<std::mutex> lock(m_ThreadExceptionsMutex);
+                try {
+                    job(localP4);
+                } catch (const std::exception &e) {
+                    std::unique_lock<std::mutex> lock(m_ThreadExceptionsMutex);
 
-					    m_ThreadExceptions[i] = std::current_exception();
-				    }
-				    m_JobsProcessing--;
-			    }
-		    }));
-	}
+                    m_ThreadExceptions[i] = std::current_exception();
+                }
+                m_JobsProcessing--;
+            }
+        }));
+    }
 }
 
-ThreadPool::~ThreadPool()
-{
-	ShutDown();
+ThreadPool::~ThreadPool() {
+    ShutDown();
 }
