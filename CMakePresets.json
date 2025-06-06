@@ -82,7 +82,7 @@
       }
     },
     {
-      "name": "unix-make",
+      "name": "make",
       "generator": "Unix Makefiles",
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
@@ -134,8 +134,8 @@
       "configuration": "Release"
     },
     {
-      "name": "unix-make",
-      "configurePreset": "unix-make"
+      "name": "make",
+      "configurePreset": "make"
     },
     {
       "name": "mingw-make",
@@ -205,6 +205,19 @@
         {
           "type": "build",
           "name": "msvc2022-release"
+        }
+      ]
+    },
+    {
+      "name": "mingw-make",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "mingw-make"
+        },
+        {
+          "type": "build",
+          "name": "mingw-make"
         }
       ]
     }
