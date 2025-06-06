@@ -57,6 +57,7 @@ if (MSVC)
 
     # WARN: Not sure what does this do, just saw it some where, known to cause build error
     # target_link_options(p4t PUBLIC /NODEFAULTLIB:libcmt.lib)
+    # target_compile_definitions(p4t PUBLIC OS_NT CASE_INSENSITIVE)
     target_link_libraries(p4t PRIVATE libclient librpc libsupp libp4api libp4script libp4script_c libp4script_cstub libp4script_curl libp4script_sqlite)
 else()
     target_link_libraries(p4t PRIVATE client rpc supp)
