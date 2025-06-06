@@ -4,8 +4,6 @@
 
 #include "p4t.h"
 
-#include "minitrace.h"
-
 ThreadPool *ThreadPool::GetSingleton() {
     static ThreadPool singleton;
     return &singleton;
@@ -78,8 +76,6 @@ void ThreadPool::Initialize(int size) {
         m_ThreadExceptions.push_back(nullptr);
         m_ThreadNames.push_back("Worker #" + std::to_string(i));
         m_Threads.push_back(std::thread([this, i]() {
-            MTR_META_THREAD_NAME(m_ThreadNames.at(i).c_str());
-
             P4T *localP4 = &m_P4Contexts[i];
 
             while (true) {

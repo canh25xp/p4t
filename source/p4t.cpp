@@ -7,7 +7,6 @@
 
 #include "p4/p4libs.h"
 #include "p4/signaler.h"
-#include "minitrace.h"
 
 ClientResult::ClientSpecData P4T::ClientSpec;
 std::string P4T::P4PORT;
@@ -27,8 +26,6 @@ P4T::P4T() {
 }
 
 bool P4T::Initialize() {
-    MTR_SCOPE("P4", __func__);
-
     // Helix Core C++ API seems to crash while making connections parallely.
     std::unique_lock<std::mutex> lock(InitializationMutex);
 
@@ -63,8 +60,6 @@ bool P4T::Deinitialize() {
 }
 
 bool P4T::Reinitialize() {
-    MTR_SCOPE("P4", __func__);
-
     bool status = Deinitialize() && Initialize();
     return status;
 }
@@ -164,7 +159,6 @@ ChangesResult P4T::ShortChanges(const std::string &path) {
 }
 
 ChangesResult P4T::Changes(const std::string &path) {
-    MTR_SCOPE("P4", __func__);
     return Run<ChangesResult>("changes", {
                                              "-l",              // Get full descriptions instead of sending cut-short ones
                                              "-s", "submitted", // Only include submitted CLs
@@ -213,7 +207,6 @@ ChangesResult P4T::ChangesFromTo(const std::string &path, const std::string &fro
 }
 
 ChangesResult P4T::LatestChange(const std::string &path) {
-    MTR_SCOPE("P4", __func__);
     return Run<ChangesResult>("changes", {
                                              "-s", "submitted", // Only include submitted CLs,
                                              "-m", "1",         // Get top-most change
@@ -232,7 +225,6 @@ ChangesResult P4T::OldestChange(const std::string &path) {
 }
 
 DescribeResult P4T::Describe(const std::string &cl) {
-    MTR_SCOPE("P4", __func__);
     return Run<DescribeResult>("describe", {"-s", // Omit the diffs
                                             cl});
 }
@@ -269,8 +261,6 @@ PrintResult P4T::PrintFile(const std::string &filePathRevision) {
 }
 
 PrintResult P4T::PrintFiles(const std::vector<std::string> &fileRevisions) {
-    MTR_SCOPE("P4", __func__);
-
     if (fileRevisions.empty()) {
         return PrintResult();
     }

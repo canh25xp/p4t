@@ -45,7 +45,6 @@ add_subdirectory(vendor)
 
 target_include_directories(p4t PRIVATE
     ${P4API_ROOT_DIR}/include
-    vendor/minitrace
     include/p4t
     include/p4t/commands
     include/p4t/utils
@@ -73,4 +72,4 @@ else()
     target_link_libraries(p4t PRIVATE client rpc supp)
 endif()
 
-target_link_libraries(p4t PRIVATE OpenSSL::Crypto OpenSSL::SSL CLI11::CLI11 dbg_macro minitrace)
+target_link_libraries(p4t PRIVATE OpenSSL::Crypto OpenSSL::SSL CLI11::CLI11 dbg_macro)
