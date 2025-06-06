@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 6,
   "cmakeMinimumRequired": {
     "major": 3,
     "minor": 15,
@@ -140,6 +140,34 @@
     {
       "name": "mingw-make",
       "configurePreset": "mingw-make"
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "default",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default"
+        },
+        {
+          "type": "build",
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "name": "msvc2017-release",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "msvc2017-release"
+        },
+        {
+          "type": "build",
+          "name": "msvc2017-release"
+        }
+      ]
     }
   ]
 }
