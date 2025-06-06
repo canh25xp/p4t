@@ -18,7 +18,7 @@
     {
       "name": "ninja-debug",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build",
+      "binaryDir": "${sourceDir}/build/Debug",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "P4API_ROOT_DIR": "vendor/p4api/p4api-2025.1.2761706"
@@ -27,7 +27,7 @@
     {
       "name": "ninja-release",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build",
+      "binaryDir": "${sourceDir}/build/Release",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
         "P4API_ROOT_DIR": "vendor/p4api/p4api-2025.1.2761706"
@@ -84,7 +84,7 @@
     {
       "name": "make-debug",
       "generator": "Unix Makefiles",
-      "binaryDir": "${sourceDir}/build",
+      "binaryDir": "${sourceDir}/build/Debug",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "OPENSSL_ROOT_DIR": "/usr/local",
@@ -94,7 +94,7 @@
     {
       "name": "make-release",
       "generator": "Unix Makefiles",
-      "binaryDir": "${sourceDir}/build",
+      "binaryDir": "${sourceDir}/build/Release",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
         "OPENSSL_ROOT_DIR": "/usr/local",
@@ -104,7 +104,7 @@
     {
       "name": "mingw-make-debug",
       "generator": "MinGW Makefiles",
-      "binaryDir": "${sourceDir}/build",
+      "binaryDir": "${sourceDir}/build/Debug",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "OPENSSL_ROOT_DIR": "C:/msys64/mingw64",
@@ -114,7 +114,7 @@
     {
       "name": "mingw-make-release",
       "generator": "MinGW Makefiles",
-      "binaryDir": "${sourceDir}/build",
+      "binaryDir": "${sourceDir}/build/Release",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
         "OPENSSL_ROOT_DIR": "C:/msys64/mingw64",
