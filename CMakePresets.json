@@ -191,6 +191,32 @@
       ]
     },
     {
+      "name": "ninja-debug",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "ninja-debug"
+        },
+        {
+          "type": "build",
+          "name": "ninja-debug"
+        }
+      ]
+    },
+    {
+      "name": "ninja-release",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "ninja-release"
+        },
+        {
+          "type": "build",
+          "name": "ninja-release"
+        }
+      ]
+    },
+    {
       "name": "msvc2017-debug",
       "steps": [
         {
