@@ -12,7 +12,7 @@ class Timer {
 public:
     static TimePoint Now() { return s_Clock.now(); }
 
-    Timer();
+    inline Timer();
 
     /// Get time spent since construction of this object in seconds
     float GetTimeS() const { return (float)(s_Clock.now() - m_StartTime).count() * 1e-9; }
