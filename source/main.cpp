@@ -1,8 +1,7 @@
 #include <CLI/CLI.hpp>
 #include <dbg.h>
 
-#include <p4/clientapi.h>
-#include <p4/p4libs.h>
+#include "p4t.h"
 
 int main(int argc, char **argv);
 int main(int argc, char **argv) {
@@ -22,44 +21,20 @@ int main(int argc, char **argv) {
 
     dbg(user, port, client);
 
-    ClientUser ui;
-    ClientApi api;
-    StrBuf msg;
-    Error e;
-
-    P4Libraries::Initialize(P4LIBRARIES_INIT_ALL, &e);
-
-    if (e.Test()) {
-        e.Fmt(&msg);
-        fprintf(stderr, "%s\n", msg.Text());
+    if (!P4T::InitializeLibraries()) {
         return 1;
     }
 
-    api.Init(&e);
-
-    if (e.Test()) {
-        e.Fmt(&msg);
-        fprintf(stderr, "%s\n", msg.Text());
+    const Error &e = P4T().TestConnection(5).GetError();
+    bool ok = e.IsError() == 0;
+    if (ok) {
+        INFO("Perforce server is available");
+    } else {
+        ERROR("Error occurred while connecting to " << P4T::P4PORT);
         return 1;
     }
 
-    // Run the command "argv[1] argv[2...]"
-    api.SetArgv(argc - 2, argv + 2);
-    api.Run("info", &ui);
-
-    api.Final(&e);
-
-    if (e.Test()) {
-        e.Fmt(&msg);
-        fprintf(stderr, "%s\n", msg.Text());
-        return 1;
-    }
-
-    P4Libraries::Shutdown(P4LIBRARIES_INIT_ALL, &e);
-
-    if (e.Test()) {
-        e.Fmt(&msg);
-        fprintf(stderr, "%s\n", msg.Text());
+    if (!P4T::ShutdownLibraries()) {
         return 1;
     }
 

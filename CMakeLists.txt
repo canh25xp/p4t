@@ -46,7 +46,9 @@ add_subdirectory(vendor)
 target_include_directories(p4t PRIVATE
     ${P4API_ROOT_DIR}/include
     vendor/minitrace
-    include
+    include/p4t
+    include/p4t/commands
+    include/p4t/utils
 )
 
 target_link_directories(p4t PRIVATE ${P4API_ROOT_DIR}/lib)
