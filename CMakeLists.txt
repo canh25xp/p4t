@@ -49,9 +49,7 @@ add_executable(p4t ${SOURCES})
 add_subdirectory(vendor)
 
 target_include_directories(p4t PRIVATE
-    ${OPENSSL_INCLUDE_DIR}
     ${P4API_ROOT_DIR}/include/p4
-    ${CLI11_ROOT_DIR}/include
     include
 )
 
