@@ -1,3 +1,4 @@
+# https://help.perforce.com/helix-core/apis/p4api/current/Content/P4API/client.programming.compiling.html
 cmake_minimum_required(VERSION 3.15)
 
 project(P4API)
@@ -51,6 +52,15 @@ if(MSVC)
         $<$<CONFIG:Debug>:${P4API_LIBRARY_DEBUG_DIR}/librpc.lib>
         $<$<CONFIG:Debug>:${P4API_LIBRARY_DEBUG_DIR}/libsupp.lib>
         $<$<CONFIG:Debug>:${P4API_LIBRARY_DEBUG_DIR}/libp4script_cstub.lib>
+    )
+
+    target_link_libraries(p4api_client INTERFACE
+        $<$<CONFIG:Release>:libcmt>
+        $<$<CONFIG:Debug>:libcmtd>
+        oldnames
+        kernel32
+        ws2_32
+        advapi32
     )
 else()
     set(P4API_BASE_DIR "${CMAKE_CURRENT_LIST_DIR}/p4api-${P4API_VERSION}")

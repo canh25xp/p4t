@@ -51,10 +51,6 @@ if (MSVC)
     # WARN: Not sure what does this do, just saw it some where, known to cause build error
     # target_link_options(${PROJECT_NAME} PUBLIC /NODEFAULTLIB:libcmt.lib)
     # target_compile_definitions(${PROJECT_NAME} PUBLIC OS_NT CASE_INSENSITIVE)
-
-    # https://help.perforce.com/helix-core/apis/p4api/current/Content/P4API/client.programming.compiling.html#Compiling_and_linking_P4_Server_applications
-    # Although the  document instructs us to link with these lib, but it seems to work just fine without them.
-    # target_link_libraries(${PROJECT_NAME} PRIVATE libcmt oldnames kernel32 ws2_32 advapi32)
 endif()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE P4API::client CLI11::CLI11 dbg_macro)
