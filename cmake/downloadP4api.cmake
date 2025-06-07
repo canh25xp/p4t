@@ -7,28 +7,28 @@ function(download_and_extract_p4api)
 
     if(UNIX)
         set(P4API_ARCHIVE_URLS
-            "https://cdist2.perforce.com/perforce/r25.1/bin.linux26x86_64/p4api-glibc2.3-openssl3.tgz"
+            "https://filehost.perforce.com/perforce/r25.1/bin.linux26x86_64/p4api-glibc2.3-openssl3.tgz"
         )
         set(P4API_ROOT_DIR "${P4API_VENDOR_DIR}/p4api-${P4API_VERSION}")
     elseif (MSVC)
         if (CMAKE_GENERATOR MATCHES "Visual Studio 17 2022")
             set(P4API_ARCHIVE_URLS
-              "https://cdist2.perforce.com/perforce/r25.1/bin.ntx64/p4api_vs2022_static_openssl3.zip"
-              "https://cdist2.perforce.com/perforce/r25.1/bin.ntx64/p4api_vs2022_static_vsdebug_openssl3.zip"
+              "https://filehost.perforce.com/perforce/r25.1/bin.ntx64/p4api_vs2022_static_openssl3.zip"
+              "https://filehost.perforce.com/perforce/r25.1/bin.ntx64/p4api_vs2022_static_vsdebug_openssl3.zip"
             )
             set(P4API_RELEASE_DIR "${P4API_VENDOR_DIR}/p4api-${P4API_VERSION}-vs2022_static")
             set(P4API_DEBUG_DIR   "${P4API_VENDOR_DIR}/p4api-${P4API_VERSION}-vs2022_static_vsdebug")
         elseif(CMAKE_GENERATOR MATCHES "Visual Studio 15 2017")
             set(P4API_ARCHIVE_URLS
-              "https://cdist2.perforce.com/perforce/r25.1/bin.ntx64/p4api_vs2017_static_openssl3.zip"
-              "https://cdist2.perforce.com/perforce/r25.1/bin.ntx64/p4api_vs2017_static_vsdebug_openssl3.zip"
+              "https://filehost.perforce.com/perforce/r25.1/bin.ntx64/p4api_vs2017_static_openssl3.zip"
+              "https://filehost.perforce.com/perforce/r25.1/bin.ntx64/p4api_vs2017_static_vsdebug_openssl3.zip"
             )
             set(P4API_RELEASE_DIR "${P4API_VENDOR_DIR}/p4api-${P4API_VERSION}-vs2017_static")
             set(P4API_DEBUG_DIR   "${P4API_VENDOR_DIR}/p4api-${P4API_VERSION}-vs2017_static_vsdebug")
         endif()
     elseif(WIN32)
         set(P4API_ARCHIVE_URLS
-          "https://cdist2.perforce.com/perforce/r25.1/bin.mingw64x64/p4api-openssl3_gcc8_win32_seh.zip"
+          "https://filehost.perforce.com/perforce/r25.1/bin.mingw64x64/p4api-openssl3_gcc8_win32_seh.zip"
         )
         set(P4API_ROOT_DIR "${P4API_VENDOR_DIR}/p4api-${P4API_VERSION}")
     else()
