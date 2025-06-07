@@ -25,7 +25,24 @@ message(STATUS "OPENSSL_LIBRARIES: ${OPENSSL_LIBRARIES}")
 add_library(p4api_client INTERFACE)
 
 if(MSVC)
-    message(FATAL_ERROR "TODO...")
+    set(P4API_BASE_DIR "${CMAKE_CURRENT_LIST_DIR}/p4api-2025.1.2761706-vs2022_static")
+    set(P4API_RELEASE_DIR "${CMAKE_CURRENT_LIST_DIR}/p4api-2025.1.2761706-vs2022_static")
+    set(P4API_DEBUG_DIR "${CMAKE_CURRENT_LIST_DIR}/p4api-2025.1.2761706-vs2022_static_vsdebug")
+    set(P4API_INCLUDE_DIR "${P4API_BASE_DIR}/include")
+    set(P4API_LIBRARY_RELEASE_DIR "${P4API_RELEASE_DIR}/lib")
+    set(P4API_LIBRARY_DEBUG_DIR "${P4API_DEBUG_DIR}/lib")
+
+    target_link_libraries(p4api_client INTERFACE
+        $<$<CONFIG:Release>:${P4API_LIBRARY_RELEASE_DIR}/libclient.lib>
+        $<$<CONFIG:Release>:${P4API_LIBRARY_RELEASE_DIR}/librpc.lib>
+        $<$<CONFIG:Release>:${P4API_LIBRARY_RELEASE_DIR}/libsupp.lib>
+        $<$<CONFIG:Release>:${P4API_LIBRARY_RELEASE_DIR}/libp4script_cstub.lib>
+
+        $<$<CONFIG:Debug>:${P4API_LIBRARY_DEBUG_DIR}/libclient.lib>
+        $<$<CONFIG:Debug>:${P4API_LIBRARY_DEBUG_DIR}/librpc.lib>
+        $<$<CONFIG:Debug>:${P4API_LIBRARY_DEBUG_DIR}/libsupp.lib>
+        $<$<CONFIG:Debug>:${P4API_LIBRARY_DEBUG_DIR}/libp4script_cstub.lib>
+    )
 else()
     set(P4API_BASE_DIR "${CMAKE_CURRENT_LIST_DIR}/p4api-2025.1.2761706")
     set(P4API_INCLUDE_DIR "${P4API_BASE_DIR}/include")
