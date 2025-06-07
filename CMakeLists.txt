@@ -73,13 +73,13 @@ if (MSVC)
     # WARN: Not sure what does this do, just saw it some where, known to cause build error
     # target_link_options(${PROJECT_NAME} PUBLIC /NODEFAULTLIB:libcmt.lib)
     # target_compile_definitions(${PROJECT_NAME} PUBLIC OS_NT CASE_INSENSITIVE)
-    target_link_libraries(${PROJECT_NAME} PRIVATE libclient librpc libsupp libp4api libp4script libp4script_c libp4script_cstub libp4script_curl libp4script_sqlite)
+    target_link_libraries(${PROJECT_NAME} PRIVATE libclient librpc libsupp libp4script_cstub)
 
     # https://help.perforce.com/helix-core/apis/p4api/current/Content/P4API/client.programming.compiling.html#Compiling_and_linking_P4_Server_applications
     # Although the  document instructs us to link with these lib, but it seems to work just fine without them.
     # target_link_libraries(${PROJECT_NAME} PRIVATE libcmt oldnames kernel32 ws2_32 advapi32)
 else()
-    target_link_libraries(${PROJECT_NAME} PRIVATE client rpc supp)
+    target_link_libraries(${PROJECT_NAME} PRIVATE client rpc supp p4script_cstub)
 endif()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE OpenSSL::Crypto OpenSSL::SSL CLI11::CLI11 dbg_macro)
