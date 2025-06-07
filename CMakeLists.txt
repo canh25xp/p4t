@@ -33,7 +33,7 @@ message("OPENSSL_INCLUDE_DIR: ${OPENSSL_INCLUDE_DIR}")
 message("OPENSSL_LIBRARIES: ${OPENSSL_LIBRARIES}")
 
 if (NOT P4API_ROOT_DIR )
-    set(P4API_ROOT_DIR "./vendor/p4api/p4api-2024.1.2724731")
+    set(P4API_ROOT_DIR "./vendor/p4api/p4api-2025.1.2761706")
     message("P4API_ROOT_DIR:" ${P4API_ROOT_DIR})
 endif()
 
