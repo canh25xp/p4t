@@ -24,10 +24,19 @@ message(STATUS "OPENSSL_LIBRARIES: ${OPENSSL_LIBRARIES}")
 
 add_library(p4api_client INTERFACE)
 
+set(P4API_VERSION "2025.1.2761706")
+
 if(MSVC)
-    set(P4API_BASE_DIR "${CMAKE_CURRENT_LIST_DIR}/p4api-2025.1.2761706-vs2022_static")
-    set(P4API_RELEASE_DIR "${CMAKE_CURRENT_LIST_DIR}/p4api-2025.1.2761706-vs2022_static")
-    set(P4API_DEBUG_DIR "${CMAKE_CURRENT_LIST_DIR}/p4api-2025.1.2761706-vs2022_static_vsdebug")
+    if (CMAKE_GENERATOR MATCHES "Visual Studio 17 2022")
+        set(P4API_BASE_DIR "${CMAKE_CURRENT_LIST_DIR}/p4api-${P4API_VERSION}-vs2022_static")
+        set(P4API_RELEASE_DIR "${CMAKE_CURRENT_LIST_DIR}/p4api-${P4API_VERSION}-vs2022_static")
+        set(P4API_DEBUG_DIR   "${CMAKE_CURRENT_LIST_DIR}/p4api-${P4API_VERSION}-vs2022_static_vsdebug")
+    elseif(CMAKE_GENERATOR MATCHES "Visual Studio 15 2017")
+        set(P4API_BASE_DIR "${CMAKE_CURRENT_LIST_DIR}/p4api-${P4API_VERSION}-vs2017_static")
+        set(P4API_RELEASE_DIR "${CMAKE_CURRENT_LIST_DIR}/p4api-${P4API_VERSION}-vs2017_static")
+        set(P4API_DEBUG_DIR   "${CMAKE_CURRENT_LIST_DIR}/p4api-${P4API_VERSION}-vs2017_static_vsdebug")
+    endif()
+
     set(P4API_INCLUDE_DIR "${P4API_BASE_DIR}/include")
     set(P4API_LIBRARY_RELEASE_DIR "${P4API_RELEASE_DIR}/lib")
     set(P4API_LIBRARY_DEBUG_DIR "${P4API_DEBUG_DIR}/lib")
@@ -44,7 +53,7 @@ if(MSVC)
         $<$<CONFIG:Debug>:${P4API_LIBRARY_DEBUG_DIR}/libp4script_cstub.lib>
     )
 else()
-    set(P4API_BASE_DIR "${CMAKE_CURRENT_LIST_DIR}/p4api-2025.1.2761706")
+    set(P4API_BASE_DIR "${CMAKE_CURRENT_LIST_DIR}/p4api-${P4API_VERSION}")
     set(P4API_INCLUDE_DIR "${P4API_BASE_DIR}/include")
     set(P4API_LIBRARY_DIR "${P4API_BASE_DIR}/lib")
 
