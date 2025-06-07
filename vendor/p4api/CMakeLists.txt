@@ -61,7 +61,6 @@ else()
         "${P4API_LIBRARY_DIR}/libclient.a"
         "${P4API_LIBRARY_DIR}/librpc.a"
         "${P4API_LIBRARY_DIR}/libsupp.a"
-        "${P4API_LIBRARY_DIR}/p4script_cstub.a"
     )
 
     target_link_libraries(p4api_client INTERFACE ${P4API_LIBS})
