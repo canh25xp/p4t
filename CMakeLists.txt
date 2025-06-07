@@ -49,18 +49,18 @@ endif()
 
 file(GLOB_RECURSE INCLUDES include/**.h)
 file(GLOB_RECURSE SOURCES source/**.cpp)
-add_executable(p4t ${SOURCES} ${INCLUDES})
+add_executable(${PROJECT_NAME} ${SOURCES} ${INCLUDES})
 
 add_subdirectory(vendor)
 
-target_include_directories(p4t PRIVATE
+target_include_directories(${PROJECT_NAME} PRIVATE
     ${P4API_ROOT_DIR}/include
     include/p4t
     include/p4t/commands
     include/p4t/utils
 )
 
-target_link_directories(p4t PRIVATE ${P4API_ROOT_DIR}/lib)
+target_link_directories(${PROJECT_NAME} PRIVATE ${P4API_ROOT_DIR}/lib)
 
 if (MSVC)
     # NOTE: I'm not sure if these lines below are the same, so better to keep all
@@ -68,18 +68,18 @@ if (MSVC)
     # set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
     # Compile with /MT flag for release and /MTd for debug.
     # Do not use /MD or /MDd
-    set_property(TARGET p4t PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+    set_property(TARGET ${PROJECT_NAME} PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
     # WARN: Not sure what does this do, just saw it some where, known to cause build error
-    # target_link_options(p4t PUBLIC /NODEFAULTLIB:libcmt.lib)
-    # target_compile_definitions(p4t PUBLIC OS_NT CASE_INSENSITIVE)
-    target_link_libraries(p4t PRIVATE libclient librpc libsupp libp4api libp4script libp4script_c libp4script_cstub libp4script_curl libp4script_sqlite)
+    # target_link_options(${PROJECT_NAME} PUBLIC /NODEFAULTLIB:libcmt.lib)
+    # target_compile_definitions(${PROJECT_NAME} PUBLIC OS_NT CASE_INSENSITIVE)
+    target_link_libraries(${PROJECT_NAME} PRIVATE libclient librpc libsupp libp4api libp4script libp4script_c libp4script_cstub libp4script_curl libp4script_sqlite)
 
     # https://help.perforce.com/helix-core/apis/p4api/current/Content/P4API/client.programming.compiling.html#Compiling_and_linking_P4_Server_applications
     # Although the  document instructs us to link with these lib, but it seems to work just fine without them.
-    # target_link_libraries(p4t PRIVATE libcmt oldnames kernel32 ws2_32 advapi32)
+    # target_link_libraries(${PROJECT_NAME} PRIVATE libcmt oldnames kernel32 ws2_32 advapi32)
 else()
-    target_link_libraries(p4t PRIVATE client rpc supp)
+    target_link_libraries(${PROJECT_NAME} PRIVATE client rpc supp)
 endif()
 
-target_link_libraries(p4t PRIVATE OpenSSL::Crypto OpenSSL::SSL CLI11::CLI11 dbg_macro)
+target_link_libraries(${PROJECT_NAME} PRIVATE OpenSSL::Crypto OpenSSL::SSL CLI11::CLI11 dbg_macro)
