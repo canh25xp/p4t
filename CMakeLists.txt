@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.15)
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+include(downloadP4api)
+
 project(
     p4t
     LANGUAGES CXX
@@ -22,19 +25,26 @@ if (NOT OPENSSL_ROOT_DIR)
     elseif (WIN32)
         set(OPENSSL_ROOT_DIR "C:/msys64/mingw64")
     endif()
-    message("OPENSSL_ROOT_DIR: ${OPENSSL_ROOT_DIR}")
+    message(STATUS "OPENSSL_ROOT_DIR: ${OPENSSL_ROOT_DIR}")
 endif()
 set(OPENSSL_USE_STATIC_LIBS TRUE)
 find_package(OpenSSL REQUIRED)
 
-message("OPENSSL_FOUND: ${OPENSSL_FOUND}")
-message("OPENSSL_VERSION: ${OPENSSL_VERSION}")
-message("OPENSSL_INCLUDE_DIR: ${OPENSSL_INCLUDE_DIR}")
-message("OPENSSL_LIBRARIES: ${OPENSSL_LIBRARIES}")
+message(STATUS "OPENSSL_FOUND: ${OPENSSL_FOUND}")
+message(STATUS "OPENSSL_VERSION: ${OPENSSL_VERSION}")
+message(STATUS "OPENSSL_INCLUDE_DIR: ${OPENSSL_INCLUDE_DIR}")
+message(STATUS "OPENSSL_LIBRARIES: ${OPENSSL_LIBRARIES}")
 
-if (NOT P4API_ROOT_DIR )
-    set(P4API_ROOT_DIR "./vendor/p4api/p4api-2025.1.2761706")
-    message("P4API_ROOT_DIR:" ${P4API_ROOT_DIR})
+if(NOT P4API_ROOT_DIR)
+    set(P4API_VENDOR_DIR "${CMAKE_SOURCE_DIR}/vendor/p4api")
+    set(P4API_VERSION "2025.1.2761706")
+    set(P4API_ROOT_DIR "${P4API_VENDOR_DIR}/p4api-${P4API_VERSION}")
+endif()
+
+message(STATUS "P4API_ROOT_DIR:" ${P4API_ROOT_DIR})
+
+if(NOT EXISTS "${P4API_ROOT_DIR}")
+    download_and_extract_p4api()
 endif()
 
 file(GLOB_RECURSE INCLUDES include/**.h)
