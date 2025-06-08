@@ -4,7 +4,6 @@ cmake_minimum_required(VERSION 3.15)
 project(P4API)
 
 set(OPENSSL_USE_STATIC_LIBS TRUE)
-find_package(OpenSSL REQUIRED)
 
 # Find openssl on the system
 if (NOT OPENSSL_ROOT_DIR)
@@ -18,10 +17,13 @@ if (NOT OPENSSL_ROOT_DIR)
     message(STATUS "OPENSSL_ROOT_DIR: ${OPENSSL_ROOT_DIR}")
 endif()
 
+find_package(OpenSSL REQUIRED)
+
 message(STATUS "OPENSSL_FOUND: ${OPENSSL_FOUND}")
 message(STATUS "OPENSSL_VERSION: ${OPENSSL_VERSION}")
 message(STATUS "OPENSSL_INCLUDE_DIR: ${OPENSSL_INCLUDE_DIR}")
 message(STATUS "OPENSSL_LIBRARIES: ${OPENSSL_LIBRARIES}")
+
 
 add_library(p4api_client INTERFACE)
 
