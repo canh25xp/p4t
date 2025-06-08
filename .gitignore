@@ -5,3 +5,5 @@ vendor/p4api/*
 !vendor/p4api/CMakeLists.txt
 
 CMakeUserPresets.json
+
+compile_commands.json
