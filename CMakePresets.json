@@ -34,6 +34,46 @@
       }
     },
     {
+      "name": "make-debug",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/Debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "OPENSSL_ROOT_DIR": "/usr/local",
+        "P4API_ROOT_DIR": "${sourceDir}/vendor/p4api/p4api-2025.1.2761706"
+      }
+    },
+    {
+      "name": "make-release",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/Release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "OPENSSL_ROOT_DIR": "/usr/local",
+        "P4API_ROOT_DIR": "${sourceDir}/vendor/p4api/p4api-2025.1.2761706"
+      }
+    },
+    {
+      "name": "mingw-make-debug",
+      "generator": "MinGW Makefiles",
+      "binaryDir": "${sourceDir}/build/Debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "OPENSSL_ROOT_DIR": "C:/msys64/mingw64",
+        "P4API_ROOT_DIR": "${sourceDir}/vendor/p4api/p4api-2025.1.2761706"
+      }
+    },
+    {
+      "name": "mingw-make-release",
+      "generator": "MinGW Makefiles",
+      "binaryDir": "${sourceDir}/build/Release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "OPENSSL_ROOT_DIR": "C:/msys64/mingw64",
+        "P4API_ROOT_DIR": "${sourceDir}/vendor/p4api/p4api-2025.1.2761706"
+      }
+    },
+    {
       "name": "msvc2017",
       "generator": "Visual Studio 15 2017",
       "binaryDir": "${sourceDir}/build",
@@ -56,46 +96,6 @@
         "OPENSSL_ROOT_DIR": "C:/Program Files/FireDaemon OpenSSL 3",
         "P4API_ROOT_DIR": "${sourceDir}/vendor/p4api/p4api-2025.1.2761706-vs2022_static"
       }
-    },
-    {
-      "name": "make-debug",
-      "generator": "Unix Makefiles",
-      "binaryDir": "${sourceDir}/build/Debug",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
-        "OPENSSL_ROOT_DIR": "/usr/local",
-        "P4API_ROOT_DIR": "${sourceDir}/vendor/p4api/p4api-2025.1.2761706"
-      }
-    },
-    {
-      "name": "make-release",
-      "generator": "Unix Makefiles",
-      "binaryDir": "${sourceDir}/build/Release",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
-        "OPENSSL_ROOT_DIR": "/usr/local",
-        "P4API_ROOT_DIR": "${sourceDir}/vendor/p4api/p4api-2025.1.2761706"
-      }
-    },
-    {
-      "name": "mingw-make-debug",
-      "generator": "MinGW Makefiles",
-      "binaryDir": "${sourceDir}/build/Debug",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
-        "OPENSSL_ROOT_DIR": "C:/msys64/mingw64",
-        "P4API_ROOT_DIR": "${sourceDir}/vendor/p4api/p4api-2025.1.2761706"
-      }
-    },
-    {
-      "name": "mingw-make-release",
-      "generator": "MinGW Makefiles",
-      "binaryDir": "${sourceDir}/build/Release",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
-        "OPENSSL_ROOT_DIR": "C:/msys64/mingw64",
-        "P4API_ROOT_DIR": "${sourceDir}/vendor/p4api/p4api-2025.1.2761706"
-      }
     }
   ],
   "buildPresets": [
@@ -110,26 +110,6 @@
     {
       "name": "ninja-release",
       "configurePreset": "ninja-release"
-    },
-    {
-      "name": "msvc2017-debug",
-      "configurePreset": "msvc2017",
-      "configuration": "Debug"
-    },
-    {
-      "name": "msvc2017-release",
-      "configurePreset": "msvc2017",
-      "configuration": "Release"
-    },
-    {
-      "name": "msvc2022-debug",
-      "configurePreset": "msvc2022",
-      "configuration": "Debug"
-    },
-    {
-      "name": "msvc2022-release",
-      "configurePreset": "msvc2022",
-      "configuration": "Release"
     },
     {
       "name": "make-debug",
@@ -150,6 +130,26 @@
       "name": "mingw-make-release",
       "configurePreset": "mingw-make-release",
       "jobs": 8
+    },
+    {
+      "name": "msvc2017-debug",
+      "configurePreset": "msvc2017",
+      "configuration": "Debug"
+    },
+    {
+      "name": "msvc2017-release",
+      "configurePreset": "msvc2017",
+      "configuration": "Release"
+    },
+    {
+      "name": "msvc2022-debug",
+      "configurePreset": "msvc2022",
+      "configuration": "Debug"
+    },
+    {
+      "name": "msvc2022-release",
+      "configurePreset": "msvc2022",
+      "configuration": "Release"
     }
   ],
   "workflowPresets": [
@@ -193,40 +193,6 @@
       ]
     },
     {
-      "name": "msvc2017",
-      "steps": [
-        {
-          "type": "configure",
-          "name": "msvc2017"
-        },
-        {
-          "type": "build",
-          "name": "msvc2017-debug"
-        },
-        {
-          "type": "build",
-          "name": "msvc2017-release"
-        }
-      ]
-    },
-    {
-      "name": "msvc2022",
-      "steps": [
-        {
-          "type": "configure",
-          "name": "msvc2022"
-        },
-        {
-          "type": "build",
-          "name": "msvc2022-debug"
-        },
-        {
-          "type": "build",
-          "name": "msvc2022-release"
-        }
-      ]
-    },
-    {
       "name": "make-debug",
       "steps": [
         {
@@ -275,6 +241,40 @@
         {
           "type": "build",
           "name": "mingw-make-release"
+        }
+      ]
+    },
+    {
+      "name": "msvc2017",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "msvc2017"
+        },
+        {
+          "type": "build",
+          "name": "msvc2017-debug"
+        },
+        {
+          "type": "build",
+          "name": "msvc2017-release"
+        }
+      ]
+    },
+    {
+      "name": "msvc2022",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "msvc2022"
+        },
+        {
+          "type": "build",
+          "name": "msvc2022-debug"
+        },
+        {
+          "type": "build",
+          "name": "msvc2022-release"
         }
       ]
     }
