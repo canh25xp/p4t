@@ -9,7 +9,7 @@
     {
       "name": "default",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/Debug",
+      "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "P4API_ROOT_DIR": "${sourceDir}/vendor/p4api/p4api-2025.1.2761706"
