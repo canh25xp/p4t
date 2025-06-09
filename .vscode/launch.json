@@ -8,7 +8,9 @@
             "request": "launch",
             "program": "${command:cmake.launchTargetPath}",
             "args": [
-                "--help"
+                "-u", "${env:P4USER}",
+                "-p", "${env:P4PORT}",
+                "-c", "$env:P4CLIENT"
             ],
             "stopAtEntry": false,
             "cwd": "${command:cmake.getLaunchTargetDirectory}",
@@ -26,7 +28,9 @@
             "request": "launch",
             "program": "${command:cmake.launchTargetPath}",
             "args": [
-                "--help"
+                "-u", "${env:P4USER}",
+                "-p", "${env:P4PORT}",
+                "-c", "$env:P4CLIENT"
             ],
             "stopAtEntry": false,
             "cwd": "${command:cmake.getLaunchTargetDirectory}",
