@@ -7,3 +7,6 @@ vendor/p4api/*
 CMakeUserPresets.json
 
 compile_commands.json
+
+.vscode/*
+!.vscode/launch.json
