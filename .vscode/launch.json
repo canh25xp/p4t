@@ -10,7 +10,7 @@
             "args": [
                 "-u", "${env:P4USER}",
                 "-p", "${env:P4PORT}",
-                "-c", "$env:P4CLIENT"
+                "-c", "${env:P4CLIENT}"
             ],
             "stopAtEntry": false,
             "cwd": "${command:cmake.getLaunchTargetDirectory}",
@@ -30,7 +30,7 @@
             "args": [
                 "-u", "${env:P4USER}",
                 "-p", "${env:P4PORT}",
-                "-c", "$env:P4CLIENT"
+                "-c", "${env:P4CLIENT}"
             ],
             "stopAtEntry": false,
             "cwd": "${command:cmake.getLaunchTargetDirectory}",
