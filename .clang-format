@@ -6,3 +6,4 @@ ColumnLimit: 0
 SortIncludes: false
 AccessModifierOffset: -4
 BreakBeforeTernaryOperators: false
+AllowShortCaseLabelsOnASingleLine: true

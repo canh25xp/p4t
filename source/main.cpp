@@ -10,7 +10,7 @@
 void SignalHandler(sig_atomic_t s);
 
 #ifdef _WIN32
-const char* strsignal(int sig);
+const char *strsignal(int sig);
 #endif
 
 int main(int argc, char **argv);
@@ -74,15 +74,15 @@ int main(int argc, char **argv) {
 }
 
 #ifdef _WIN32
-const char* strsignal(int sig) {
+const char *strsignal(int sig) {
     switch (sig) {
-        case SIGINT: return "Interrupt";
-        case SIGABRT: return "Abort";
-        case SIGFPE: return "Floating point exception";
-        case SIGILL: return "Illegal instruction";
-        case SIGSEGV: return "Segmentation fault";
-        case SIGTERM: return "Termination request";
-        default: return "Unknown signal";
+    case SIGINT: return "Interrupt";
+    case SIGABRT: return "Abort";
+    case SIGFPE: return "Floating point exception";
+    case SIGILL: return "Illegal instruction";
+    case SIGSEGV: return "Segmentation fault";
+    case SIGTERM: return "Termination request";
+    default: return "Unknown signal";
     }
 }
 #endif
