@@ -82,4 +82,11 @@ target_include_directories(p4api_client INTERFACE "${P4API_INCLUDE_DIR}")
 
 target_link_libraries(p4api_client INTERFACE OpenSSL::SSL OpenSSL::Crypto)
 
+if(UNIX)
+    target_compile_definitions(p4api_client INTERFACE OS_LINUX)
+elseif(WIN32)
+    target_compile_definitions(p4api_client INTERFACE OS_NT CASE_INSENSITIVE)
+endif()
+
+
 add_library(P4API::client ALIAS p4api_client)

@@ -47,10 +47,6 @@ if (MSVC)
     # Compile with /MT flag for release and /MTd for debug.
     # Do not use /MD or /MDd
     set_property(TARGET ${PROJECT_NAME} PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-
-    # WARN: Not sure what does this do, just saw it some where, known to cause build error
-    # target_link_options(${PROJECT_NAME} PUBLIC /NODEFAULTLIB:libcmt.lib)
-    # target_compile_definitions(${PROJECT_NAME} PUBLIC OS_NT CASE_INSENSITIVE)
 endif()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE P4API::client CLI11::CLI11 dbg_macro)
