@@ -11,6 +11,12 @@ FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E "\.($EXTENSION
 
 echo "Running clang-format on staged C++ files..."
 
+if ! command -v clang-format &> /dev/null; then
+    echo "Error: clang-format not found in PATH."
+    echo "Aborting commit. Install clang-format or bypass with 'git commit --no-verify'."
+    exit 1
+fi
+
 # Format each file and restage it
 for FILE in $FILES; do
     if [ -f "$FILE" ]; then
