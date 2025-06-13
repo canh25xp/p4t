@@ -12,8 +12,6 @@ ClientResult::ClientSpecData P4T::ClientSpec;
 std::string P4T::P4PORT;
 std::string P4T::P4USER;
 std::string P4T::P4CLIENT;
-int P4T::CommandRetries = 1;
-int P4T::CommandRefreshThreshold = 1;
 std::mutex P4T::InitializationMutex;
 
 P4T::P4T() {
@@ -146,7 +144,7 @@ StreamResult P4T::Stream(const std::string &path) {
 }
 
 TestResult P4T::TestConnection(const int retries) {
-    return RunEx<TestResult>("changes", {"-m", "1", "//..."}, retries);
+    return Run<TestResult>("changes", {"-m", "1", "//..."}, retries);
 }
 
 ChangesResult P4T::ShortChanges(const std::string &path) {
@@ -286,7 +284,7 @@ InfoResult P4T::Info() {
 
 
 template <class T>
-inline T P4T::RunEx(const char *command, const std::vector<std::string> &stringArguments, const int commandRetries) {
+inline T P4T::Run(const char *command, const std::vector<std::string> &stringArguments, const int commandRetries) {
     std::string argsString;
     for (const std::string &stringArg : stringArguments) {
         argsString = argsString + " " + stringArg;
@@ -329,16 +327,16 @@ inline T P4T::RunEx(const char *command, const std::vector<std::string> &stringA
     }
 
     if (m_ClientAPI.Dropped() || clientUser.GetError().IsFatal()) {
-        ERROR("Exiting due to receiving errors even after retrying " << CommandRetries << " times");
+        ERROR("Exiting due to receiving errors even after retrying " << COMMAND_RETRIES << " times");
         Deinitialize();
         std::exit(1);
     }
 
     m_Usage++;
-    if (m_Usage > CommandRefreshThreshold) {
-        int refreshRetries = CommandRetries;
+    if (m_Usage > COMMAND_REFRESH_THRESHOLD) {
+        int refreshRetries = COMMAND_RETRIES;
         while (refreshRetries > 0) {
-            WARN("Trying to refresh the connection due to age (" << m_Usage << " > " << CommandRefreshThreshold << ").");
+            WARN("Trying to refresh the connection due to age (" << m_Usage << " > " << COMMAND_REFRESH_THRESHOLD << ").");
             if (Reinitialize()) {
                 INFO("Connection was refreshed");
                 break;
@@ -350,15 +348,10 @@ inline T P4T::RunEx(const char *command, const std::vector<std::string> &stringA
         }
 
         if (refreshRetries == 0) {
-            ERROR("Could not refresh the connection after " << CommandRetries << " retries. Exiting.");
+            ERROR("Could not refresh the connection after " << COMMAND_RETRIES << " retries. Exiting.");
             std::exit(1);
         }
     }
 
     return clientUser;
-}
-
-template <class T>
-inline T P4T::Run(const char *command, const std::vector<std::string> &stringArguments) {
-    return RunEx<T>(command, stringArguments, CommandRetries);
 }

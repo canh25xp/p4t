@@ -29,18 +29,17 @@ class P4T {
     bool Reinitialize();
     bool CheckErrors(Error &e, StrBuf &msg);
 
+    static const int COMMAND_RETRIES = 1;
+    static const int COMMAND_REFRESH_THRESHOLD = 1;
+
     template <class T>
-    T Run(const char *command, const std::vector<std::string> &stringArguments);
-    template <class T>
-    T RunEx(const char *command, const std::vector<std::string> &stringArguments, const int commandRetries);
+    T Run(const char *command, const std::vector<std::string> &stringArguments, const int commandRetries = COMMAND_RETRIES);
 
 public:
     static std::string P4PORT;
     static std::string P4USER;
     static std::string P4CLIENT;
     static ClientResult::ClientSpecData ClientSpec;
-    static int CommandRetries;
-    static int CommandRefreshThreshold;
 
     // Helix Core C++ API seems to crash while making connections parallely.
     static std::mutex InitializationMutex;
@@ -58,7 +57,7 @@ public:
 
     void AddClientSpecView(const std::vector<std::string> &viewStrings);
 
-    TestResult TestConnection(const int retries);
+    TestResult TestConnection(const int retries = 5);
     ChangesResult ShortChanges(const std::string &path);
     ChangesResult Changes(const std::string &path);
     ChangesResult Changes(const std::string &path, const std::string &from, int32_t maxCount);
