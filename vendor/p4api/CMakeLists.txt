@@ -85,7 +85,7 @@ target_link_libraries(p4api_client INTERFACE OpenSSL::SSL OpenSSL::Crypto)
 if(UNIX)
     target_compile_definitions(p4api_client INTERFACE OS_LINUX)
 elseif(WIN32)
-    target_compile_definitions(p4api_client INTERFACE OS_NT CASE_INSENSITIVE)
+    target_compile_definitions(p4api_client INTERFACE OS_NT)
 endif()
 
 
