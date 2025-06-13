@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include "common.h"
 #include "change_list.h"
 #include "result.h"
 

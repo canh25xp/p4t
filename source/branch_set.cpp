@@ -1,5 +1,8 @@
+#include <unordered_map>
+#include <stdexcept>
+
 #include "branch_set.h"
-#include <map>
+#include "std_helpers.h"
 
 static const std::string EMPTY_STRING = "";
 static const std::array<std::string, 2> INVALID_BRANCH_PATH{EMPTY_STRING, EMPTY_STRING};

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "common.h"
+#include <p4/clientapi.h>
 
 class Result : public ClientUser {
     Error m_Error;

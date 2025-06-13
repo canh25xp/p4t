@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
 
-#include "common.h"
+#include <p4/clientapi.h>
+
 #include "stream_result.h"
 #include "std_helpers.h"
 

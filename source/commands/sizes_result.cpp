@@ -1,3 +1,5 @@
+#include <p4/clientapi.h>
+
 #include "sizes_result.h"
 
 void SizesResult::OutputStat(StrDict *varList) {

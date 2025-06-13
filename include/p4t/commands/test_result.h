@@ -1,6 +1,5 @@
 #pragma once
 
-#include "common.h"
 #include "result.h"
 
 class TestResult : public Result {

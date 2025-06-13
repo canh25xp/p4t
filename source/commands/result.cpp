@@ -1,4 +1,7 @@
+#include <p4/clientapi.h>
+
 #include "result.h"
+#include "log.h"
 
 void Result::HandleError(Error *e) {
     StrBuf str;

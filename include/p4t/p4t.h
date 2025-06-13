@@ -1,10 +1,7 @@
 #pragma once
 
-#include <thread>
-#include <chrono>
-#include <cstdint>
-
-#include "common.h"
+#include <string>
+#include <p4/clientapi.h>
 
 #include "file_map.h"
 #include "changes_result.h"

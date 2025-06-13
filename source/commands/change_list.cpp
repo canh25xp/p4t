@@ -4,7 +4,6 @@
 #include "describe_result.h"
 #include "filelog_result.h"
 #include "print_result.h"
-#include "std_helpers.h"
 
 #include "thread_pool.h"
 

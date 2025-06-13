@@ -1,4 +1,7 @@
 #include "users_result.h"
+#include "log.h"
+
+#include <p4/clientapi.h>
 
 void UsersResult::OutputStat(StrDict *varList) {
     StrPtr *userIDPtr = varList->GetVar("User");

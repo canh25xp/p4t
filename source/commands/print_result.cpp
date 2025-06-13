@@ -1,3 +1,5 @@
+#include <p4/clientapi.h>
+
 #include "print_result.h"
 
 void PrintResult::OutputStat(StrDict *varList) {

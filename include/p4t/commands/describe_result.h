@@ -1,9 +1,9 @@
 #pragma once
 
 #include <vector>
-#include <string>
 
-#include "common.h"
+#include <p4/clientapi.h>
+
 #include "file_data.h"
 #include "result.h"
 

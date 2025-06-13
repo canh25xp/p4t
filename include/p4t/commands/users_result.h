@@ -1,7 +1,9 @@
 #pragma once
 
-#include "common.h"
 #include "result.h"
+
+#include <string>
+#include <unordered_map>
 
 class UsersResult : public Result {
 public:

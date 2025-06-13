@@ -2,7 +2,6 @@
 
 #include <vector>
 
-#include "common.h"
 #include "result.h"
 
 class PrintResult : public Result {

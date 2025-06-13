@@ -1,12 +1,11 @@
 #pragma once
 
+#include <vector>
 #include <thread>
 #include <deque>
 #include <functional>
 #include <atomic>
 #include <condition_variable>
-
-#include "common.h"
 
 class P4T;
 

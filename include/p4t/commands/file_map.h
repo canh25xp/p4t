@@ -1,10 +1,9 @@
-
 #pragma once
 
 #include <vector>
 #include <string>
 
-#include "common.h"
+#include <p4/mapapi.h>
 
 struct FileMap {
 private:

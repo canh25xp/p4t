@@ -4,12 +4,10 @@
 #include <vector>
 #include <array>
 #include <memory>
-#include <stdexcept>
 
 #include "file_map.h"
 #include "file_data.h"
 #include "stream_result.h"
-#include "std_helpers.h"
 
 struct BranchedFileGroup {
     // If a BranchedFiles collection hasSource == true,

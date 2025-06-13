@@ -1,9 +1,9 @@
 #pragma once
+
 #include <iosfwd>
 #include <string>
 #include <vector>
 
-#include "common.h"
 #include "result.h"
 
 class StreamResult : public Result {

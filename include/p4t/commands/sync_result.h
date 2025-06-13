@@ -3,7 +3,6 @@
 #include <vector>
 #include <string>
 
-#include "common.h"
 #include "result.h"
 
 class SyncResult : public Result {

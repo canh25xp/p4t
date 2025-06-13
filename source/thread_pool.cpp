@@ -1,7 +1,5 @@
 #include "thread_pool.h"
-
-#include "common.h"
-
+#include "log.h"
 #include "p4t.h"
 
 ThreadPool *ThreadPool::GetSingleton() {

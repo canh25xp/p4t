@@ -1,4 +1,6 @@
 #include "file_data.h"
+#include "log.h"
+#include "std_helpers.h"
 
 FileDataStore::FileDataStore()
     : actionCategory(FileAction::FileAdd), isContentsSet(false), isContentsPendingDownload(false) {

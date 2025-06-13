@@ -2,7 +2,6 @@
 
 #include <string>
 
-#include "common.h"
 #include "result.h"
 
 class SizesResult : public Result {

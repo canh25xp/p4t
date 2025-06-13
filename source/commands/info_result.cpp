@@ -1,3 +1,5 @@
+#include <p4/clientapi.h>
+
 #include "info_result.h"
 #include "time_helpers.h"
 

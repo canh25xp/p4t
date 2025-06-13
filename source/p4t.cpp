@@ -1,12 +1,15 @@
 #include "p4t.h"
 
 #include <csignal>
+#include <thread>
 
-#include "stream_result.h"
+#include <p4/clientapi.h>
+#include <p4/p4libs.h>
+#include <p4/signaler.h>
+
+#include "log.h"
 #include "std_helpers.h"
-
-#include "p4/p4libs.h"
-#include "p4/signaler.h"
+#include "stream_result.h"
 
 ClientResult::ClientSpecData P4T::ClientSpec;
 std::string P4T::P4PORT;

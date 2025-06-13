@@ -1,12 +1,11 @@
 #pragma once
 
 #include <vector>
-#include <string>
 
-#include "common.h"
+#include <p4/clientapi.h>
+
 #include "result.h"
 #include "file_data.h"
-#include "utils/std_helpers.h"
 
 // Very limited to just a single file log entry per file.
 class FileLogResult : public Result {

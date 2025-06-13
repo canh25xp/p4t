@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 class Log {
 public:
     static const char *ColorRed;

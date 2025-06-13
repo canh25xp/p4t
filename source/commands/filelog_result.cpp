@@ -1,4 +1,7 @@
 #include "filelog_result.h"
+#include "std_helpers.h"
+
+#include <p4/clientapi.h>
 
 // Should be called once per varlist.  Each filelog file
 //   is its own entry.

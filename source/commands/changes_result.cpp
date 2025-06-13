@@ -1,4 +1,7 @@
 #include <algorithm>
+
+#include <p4/clientapi.h>
+
 #include "changes_result.h"
 
 void ChangesResult::OutputStat(StrDict *varList) {

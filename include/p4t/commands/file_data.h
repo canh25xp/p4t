@@ -2,8 +2,8 @@
 
 #include <memory>
 #include <atomic>
-#include "common.h"
-#include "utils/std_helpers.h"
+#include <string>
+#include <vector>
 
 #define FAKE_INTEGRATION_DELETE_ACTION_NAME "FAKE merge delete"
 

@@ -1,4 +1,7 @@
+#include <p4/clientapi.h>
+
 #include "file_map.h"
+#include "log.h"
 
 FileMap::FileMap()
     : m_sensitivity(MapCase::Sensitive) {

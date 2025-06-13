@@ -2,10 +2,8 @@
 
 #include <memory>
 #include <condition_variable>
-#include <atomic>
 #include <mutex>
 
-#include "common.h"
 #include "branch_set.h"
 
 struct ChangeList {
