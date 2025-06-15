@@ -9,4 +9,6 @@ public:
     void HandleError(Error *e) override;
 
     const Error &GetError() const { return m_Error; }
+
+    bool IsError() { return m_Error.IsError() == 0; }
 };
