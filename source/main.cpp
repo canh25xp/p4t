@@ -47,8 +47,7 @@ int main(int argc, char **argv) {
     P4T::P4PORT = port;
     P4T::P4CLIENT = client;
 
-    const Error &e = P4T().TestConnection().GetError();
-    bool ok = e.IsError() == 0;
+    bool ok = P4T().TestConnection().IsError();
     if (ok) {
         INFO("Perforce server is available");
     } else {
