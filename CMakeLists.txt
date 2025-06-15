@@ -10,6 +10,9 @@ project(
     DESCRIPTION "P4 Tool"
 )
 
+option(DBG_MACRO_DISABLE "disable debug macro" FALSE)
+option(DBG_MACRO_NO_WARNING "disable debug macro warning" TRUE)
+
 # Generate compile_commands.json, will be used by lsp_server
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
@@ -50,3 +53,11 @@ if (MSVC)
 endif()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE P4API::client CLI11::CLI11 dbg_macro)
+
+if(DBG_MACRO_DISABLE)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE DBG_MACRO_DISABLE)
+endif()
+
+if(DBG_MACRO_NO_WARNING)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE DBG_MACRO_NO_WARNING)
+endif()
