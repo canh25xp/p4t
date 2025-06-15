@@ -1,7 +1,11 @@
+#include "branch_set.h"
+
+#include <string>
+#include <array>
+#include <vector>
 #include <unordered_map>
 #include <stdexcept>
 
-#include "branch_set.h"
 #include "std_helpers.h"
 
 static const std::string EMPTY_STRING = "";

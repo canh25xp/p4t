@@ -3,8 +3,6 @@
 #include <vector>
 #include <string>
 
-#include <p4/clientapi.h>
-
 #include "result.h"
 
 class ClientResult : public Result {

@@ -1,6 +1,8 @@
-#include <p4/clientapi.h>
-
 #include "describe_result.h"
+
+#include <string>
+
+#include "p4/clientapi.h"
 
 void DescribeResult::OutputStat(StrDict *varList) {
 }
