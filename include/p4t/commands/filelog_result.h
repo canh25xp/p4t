@@ -2,8 +2,6 @@
 
 #include <vector>
 
-#include <p4/clientapi.h>
-
 #include "result.h"
 #include "file_data.h"
 

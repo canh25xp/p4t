@@ -1,6 +1,6 @@
 #include "test_result.h"
 
-#include <p4/clientapi.h>
+#include "p4/clientapi.h"
 
 void TestResult::OutputStat(StrDict *varList) {
 }

@@ -1,7 +1,9 @@
 #pragma once
 
 #include <string>
-#include <p4/clientapi.h>
+#include <vector>
+
+#include "p4/clientapi.h"
 
 #include "file_map.h"
 #include "changes_result.h"

@@ -1,10 +1,14 @@
 #pragma once
 
+#include <stdint.h>
 #include <memory>
 #include <condition_variable>
 #include <mutex>
+#include <string>
+#include <vector>
 
 #include "branch_set.h"
+#include "file_data.h"
 
 struct ChangeList {
     enum State {

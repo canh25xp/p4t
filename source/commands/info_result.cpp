@@ -1,6 +1,9 @@
-#include <p4/clientapi.h>
-
 #include "info_result.h"
+
+#include <string>
+
+#include "p4/clientapi.h"
+
 #include "time_helpers.h"
 
 InfoResult::InfoResult()

@@ -1,6 +1,7 @@
-#include <p4/clientapi.h>
-
 #include "result.h"
+
+#include "p4/clientapi.h"
+
 #include "log.h"
 
 void Result::HandleError(Error *e) {

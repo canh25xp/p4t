@@ -1,8 +1,8 @@
+#include "changes_result.h"
+
 #include <algorithm>
 
-#include <p4/clientapi.h>
-
-#include "changes_result.h"
+#include "p4/clientapi.h"
 
 void ChangesResult::OutputStat(StrDict *varList) {
     m_Changes.emplace_back(

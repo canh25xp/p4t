@@ -1,0 +1,478 @@
+
+(/home/michael/projects/cpp/p4t/include/p4t/branch_set.h has correct #includes/fwd-decls)
+
+/home/michael/projects/cpp/p4t/source/branch_set.cpp should add these lines:
+#include <stddef.h>       // for size_t
+#include <utility>        // for pair, make_pair, move
+
+/home/michael/projects/cpp/p4t/source/branch_set.cpp should remove these lines:
+
+The full include-list for /home/michael/projects/cpp/p4t/source/branch_set.cpp:
+#include "branch_set.h"
+#include <stddef.h>       // for size_t
+#include <array>          // for array
+#include <stdexcept>      // for invalid_argument
+#include <string>         // for basic_string, string, hash, operator+, oper...
+#include <unordered_map>  // for unordered_map, operator==, _Node_iterator_base
+#include <utility>        // for pair, make_pair, move
+#include <vector>         // for vector
+#include "std_helpers.h"  // for STDHelpers
+---
+
+
+/home/michael/projects/cpp/p4t/include/p4t/commands/change_list.h should add these lines:
+#include <stdint.h>            // for int64_t
+#include <string>              // for string, basic_string
+#include <vector>              // for vector
+struct FileData;
+
+/home/michael/projects/cpp/p4t/include/p4t/commands/change_list.h should remove these lines:
+
+The full include-list for /home/michael/projects/cpp/p4t/include/p4t/commands/change_list.h:
+#include <stdint.h>            // for int64_t
+#include <condition_variable>  // for condition_variable
+#include <memory>              // for unique_ptr, shared_ptr
+#include <mutex>               // for mutex
+#include <string>              // for string, basic_string
+#include <vector>              // for vector
+#include "branch_set.h"        // for ChangedFileGroups, BranchSet (ptr only)
+struct FileData;
+---
+
+/home/michael/projects/cpp/p4t/source/commands/change_list.cpp should add these lines:
+#include "file_data.h"        // for FileData
+
+/home/michael/projects/cpp/p4t/source/commands/change_list.cpp should remove these lines:
+
+The full include-list for /home/michael/projects/cpp/p4t/source/commands/change_list.cpp:
+#include "change_list.h"
+#include "describe_result.h"  // for DescribeResult
+#include "file_data.h"        // for FileData
+#include "filelog_result.h"   // for FileLogResult
+#include "p4t.h"              // for P4T
+#include "print_result.h"     // for PrintResult
+#include "thread_pool.h"      // for ThreadPool
+---
+
+
+(/home/michael/projects/cpp/p4t/include/p4t/commands/changes_result.h has correct #includes/fwd-decls)
+
+/home/michael/projects/cpp/p4t/source/commands/changes_result.cpp should add these lines:
+#include "p4/strbuf.h"   // for StrPtr
+#include "p4/strdict.h"  // for StrDict
+
+/home/michael/projects/cpp/p4t/source/commands/changes_result.cpp should remove these lines:
+- #include "p4/clientapi.h"  // lines 5-5
+
+The full include-list for /home/michael/projects/cpp/p4t/source/commands/changes_result.cpp:
+#include "changes_result.h"
+#include <algorithm>     // for reverse
+#include "p4/strbuf.h"   // for StrPtr
+#include "p4/strdict.h"  // for StrDict
+---
+
+
+/home/michael/projects/cpp/p4t/include/p4t/commands/client_result.h should add these lines:
+
+/home/michael/projects/cpp/p4t/include/p4t/commands/client_result.h should remove these lines:
+- #include "p4/clientapi.h"  // lines 6-6
+
+The full include-list for /home/michael/projects/cpp/p4t/include/p4t/commands/client_result.h:
+#include <string>    // for basic_string, string
+#include <vector>    // for vector
+#include "result.h"  // for Result
+---
+
+/home/michael/projects/cpp/p4t/source/commands/client_result.cpp should add these lines:
+#include "p4/strbuf.h"   // for StrPtr
+#include "p4/strdict.h"  // for StrDict
+
+/home/michael/projects/cpp/p4t/source/commands/client_result.cpp should remove these lines:
+- #include "p4/clientapi.h"  // lines 3-3
+
+The full include-list for /home/michael/projects/cpp/p4t/source/commands/client_result.cpp:
+#include "client_result.h"
+#include "p4/strbuf.h"   // for StrPtr
+#include "p4/strdict.h"  // for StrDict
+---
+
+
+/home/michael/projects/cpp/p4t/include/p4t/commands/describe_result.h should add these lines:
+
+/home/michael/projects/cpp/p4t/include/p4t/commands/describe_result.h should remove these lines:
+- #include "p4/clientapi.h"  // lines 5-5
+
+The full include-list for /home/michael/projects/cpp/p4t/include/p4t/commands/describe_result.h:
+#include <vector>       // for vector
+#include "file_data.h"  // for FileData
+#include "result.h"     // for Result
+---
+
+/home/michael/projects/cpp/p4t/source/commands/describe_result.cpp should add these lines:
+#include <string>        // for basic_string, char_traits, operator+, string
+#include "p4/strbuf.h"   // for StrPtr
+#include "p4/strdict.h"  // for StrDict
+
+/home/michael/projects/cpp/p4t/source/commands/describe_result.cpp should remove these lines:
+- #include "p4/clientapi.h"  // lines 3-3
+
+The full include-list for /home/michael/projects/cpp/p4t/source/commands/describe_result.cpp:
+#include "describe_result.h"
+#include <string>        // for basic_string, char_traits, operator+, string
+#include "p4/strbuf.h"   // for StrPtr
+#include "p4/strdict.h"  // for StrDict
+---
+
+
+(/home/michael/projects/cpp/p4t/include/p4t/commands/file_data.h has correct #includes/fwd-decls)
+
+/home/michael/projects/cpp/p4t/source/commands/file_data.cpp should add these lines:
+#include <ostream>        // for basic_ostream, operator<<
+#include <utility>        // for move
+
+/home/michael/projects/cpp/p4t/source/commands/file_data.cpp should remove these lines:
+
+The full include-list for /home/michael/projects/cpp/p4t/source/commands/file_data.cpp:
+#include "file_data.h"
+#include <ostream>        // for basic_ostream, operator<<
+#include <utility>        // for move
+#include "log.h"          // for WARN
+#include "std_helpers.h"  // for STDHelpers
+---
+
+
+(/home/michael/projects/cpp/p4t/include/p4t/commands/file_map.h has correct #includes/fwd-decls)
+
+/home/michael/projects/cpp/p4t/source/commands/file_map.cpp should add these lines:
+#include <stddef.h>     // for size_t
+#include <memory>       // for unique_ptr, default_delete, operator!=
+#include "p4/strbuf.h"  // for StrBuf, StrPtr
+
+/home/michael/projects/cpp/p4t/source/commands/file_map.cpp should remove these lines:
+- #include "p4/clientapi.h"  // lines 3-3
+
+The full include-list for /home/michael/projects/cpp/p4t/source/commands/file_map.cpp:
+#include "file_map.h"
+#include <stddef.h>     // for size_t
+#include <memory>       // for unique_ptr, default_delete, operator!=
+#include "log.h"        // for WARN
+#include "p4/strbuf.h"  // for StrBuf, StrPtr
+---
+
+
+/home/michael/projects/cpp/p4t/include/p4t/commands/filelog_result.h should add these lines:
+
+/home/michael/projects/cpp/p4t/include/p4t/commands/filelog_result.h should remove these lines:
+- #include "p4/clientapi.h"  // lines 5-5
+
+The full include-list for /home/michael/projects/cpp/p4t/include/p4t/commands/filelog_result.h:
+#include <vector>       // for vector
+#include "file_data.h"  // for FileData
+#include "result.h"     // for Result
+---
+
+/home/michael/projects/cpp/p4t/source/commands/filelog_result.cpp should add these lines:
+#include <string>         // for basic_string, char_traits, string, operator+
+#include "p4/strbuf.h"    // for StrPtr
+#include "p4/strdict.h"   // for StrDict
+
+/home/michael/projects/cpp/p4t/source/commands/filelog_result.cpp should remove these lines:
+- #include "p4/clientapi.h"  // lines 3-3
+
+The full include-list for /home/michael/projects/cpp/p4t/source/commands/filelog_result.cpp:
+#include "filelog_result.h"
+#include <string>         // for basic_string, char_traits, string, operator+
+#include "p4/strbuf.h"    // for StrPtr
+#include "p4/strdict.h"   // for StrDict
+#include "std_helpers.h"  // for STDHelpers
+---
+
+
+(/home/michael/projects/cpp/p4t/include/p4t/commands/info_result.h has correct #includes/fwd-decls)
+
+/home/michael/projects/cpp/p4t/source/commands/info_result.cpp should add these lines:
+#include <string>          // for basic_string, string
+#include "p4/strbuf.h"     // for StrPtr
+#include "p4/strdict.h"    // for StrDict
+
+/home/michael/projects/cpp/p4t/source/commands/info_result.cpp should remove these lines:
+- #include "p4/clientapi.h"  // lines 3-3
+
+The full include-list for /home/michael/projects/cpp/p4t/source/commands/info_result.cpp:
+#include "info_result.h"
+#include <string>          // for basic_string, string
+#include "p4/strbuf.h"     // for StrPtr
+#include "p4/strdict.h"    // for StrDict
+#include "time_helpers.h"  // for Time
+---
+
+
+(/home/michael/projects/cpp/p4t/include/p4t/commands/print_result.h has correct #includes/fwd-decls)
+
+/home/michael/projects/cpp/p4t/source/commands/print_result.cpp should add these lines:
+
+/home/michael/projects/cpp/p4t/source/commands/print_result.cpp should remove these lines:
+- #include "p4/clientapi.h"  // lines 3-3
+
+The full include-list for /home/michael/projects/cpp/p4t/source/commands/print_result.cpp:
+#include "print_result.h"
+---
+
+
+/home/michael/projects/cpp/p4t/include/p4t/commands/result.h should add these lines:
+#include "p4/clientuser.h"  // for ClientUser
+#include "p4/error.h"       // for Error
+
+/home/michael/projects/cpp/p4t/include/p4t/commands/result.h should remove these lines:
+- #include "p4/clientapi.h"  // lines 3-3
+
+The full include-list for /home/michael/projects/cpp/p4t/include/p4t/commands/result.h:
+#include "p4/clientuser.h"  // for ClientUser
+#include "p4/error.h"       // for Error
+---
+
+/home/michael/projects/cpp/p4t/source/commands/result.cpp should add these lines:
+#include <ostream>      // for basic_ostream, char_traits, operator<<
+#include "p4/strbuf.h"  // for StrBuf
+
+/home/michael/projects/cpp/p4t/source/commands/result.cpp should remove these lines:
+- #include "p4/clientapi.h"  // lines 3-3
+
+The full include-list for /home/michael/projects/cpp/p4t/source/commands/result.cpp:
+#include "result.h"
+#include <ostream>      // for basic_ostream, char_traits, operator<<
+#include "log.h"        // for ERROR
+#include "p4/strbuf.h"  // for StrBuf
+---
+
+
+(/home/michael/projects/cpp/p4t/include/p4t/commands/sizes_result.h has correct #includes/fwd-decls)
+
+/home/michael/projects/cpp/p4t/source/commands/sizes_result.cpp should add these lines:
+#include "p4/strbuf.h"   // for StrPtr
+#include "p4/strdict.h"  // for StrDict
+
+/home/michael/projects/cpp/p4t/source/commands/sizes_result.cpp should remove these lines:
+- #include "p4/clientapi.h"  // lines 3-3
+
+The full include-list for /home/michael/projects/cpp/p4t/source/commands/sizes_result.cpp:
+#include "sizes_result.h"
+#include "p4/strbuf.h"   // for StrPtr
+#include "p4/strdict.h"  // for StrDict
+---
+
+
+/home/michael/projects/cpp/p4t/source/commands/stream_result.cpp should add these lines:
+#include <string>           // for basic_string, char_traits, operator==
+#include "p4/strbuf.h"      // for StrPtr
+#include "p4/strdict.h"     // for StrDict
+
+/home/michael/projects/cpp/p4t/source/commands/stream_result.cpp should remove these lines:
+- #include "p4/clientapi.h"  // lines 1-1
+
+The full include-list for /home/michael/projects/cpp/p4t/source/commands/stream_result.cpp:
+#include <iostream>         // for char_traits, basic_ostream, operator<<
+#include <string>           // for basic_string, char_traits, operator==
+#include <vector>           // for allocator, vector
+#include "p4/strbuf.h"      // for StrPtr
+#include "p4/strdict.h"     // for StrDict
+#include "std_helpers.h"    // for STDHelpers
+#include "stream_result.h"  // for StreamResult, StreamRuleToString, StreamR...
+---
+
+
+(/home/michael/projects/cpp/p4t/include/p4t/commands/sync_result.h has correct #includes/fwd-decls)
+
+/home/michael/projects/cpp/p4t/source/commands/sync_result.cpp should add these lines:
+#include "p4/strbuf.h"   // for StrPtr
+#include "p4/strdict.h"  // for StrDict
+
+/home/michael/projects/cpp/p4t/source/commands/sync_result.cpp should remove these lines:
+- #include "p4/clientapi.h"  // lines 3-3
+
+The full include-list for /home/michael/projects/cpp/p4t/source/commands/sync_result.cpp:
+#include "sync_result.h"
+#include "p4/strbuf.h"   // for StrPtr
+#include "p4/strdict.h"  // for StrDict
+---
+
+
+(/home/michael/projects/cpp/p4t/include/p4t/commands/test_result.h has correct #includes/fwd-decls)
+
+/home/michael/projects/cpp/p4t/source/commands/test_result.cpp should add these lines:
+
+/home/michael/projects/cpp/p4t/source/commands/test_result.cpp should remove these lines:
+- #include "p4/clientapi.h"  // lines 3-3
+
+The full include-list for /home/michael/projects/cpp/p4t/source/commands/test_result.cpp:
+#include "test_result.h"
+---
+
+
+(/home/michael/projects/cpp/p4t/include/p4t/commands/users_result.h has correct #includes/fwd-decls)
+
+/home/michael/projects/cpp/p4t/source/commands/users_result.cpp should add these lines:
+#include "p4/strbuf.h"   // for StrPtr
+#include "p4/strdict.h"  // for StrDict
+
+/home/michael/projects/cpp/p4t/source/commands/users_result.cpp should remove these lines:
+- #include "p4/clientapi.h"  // lines 3-3
+
+The full include-list for /home/michael/projects/cpp/p4t/source/commands/users_result.cpp:
+#include "users_result.h"
+#include "log.h"         // for ERROR
+#include "p4/strbuf.h"   // for StrPtr
+#include "p4/strdict.h"  // for StrDict
+---
+
+
+/home/michael/projects/cpp/p4t/include/p4t/log.h should add these lines:
+
+/home/michael/projects/cpp/p4t/include/p4t/log.h should remove these lines:
+- #include <iostream>  // lines 3-3
+
+The full include-list for /home/michael/projects/cpp/p4t/include/p4t/log.h:
+---
+
+(/home/michael/projects/cpp/p4t/source/log.cpp has correct #includes/fwd-decls)
+
+In file included from /home/michael/projects/cpp/p4t/source/main.cpp:6:
+/home/michael/projects/cpp/p4t/vendor/dbg-macro/dbg.h:39:9: warning: WARNING: the 'dbg.h' header is included in your code base [-W#pragma-messages]
+   39 | #pragma message("WARNING: the 'dbg.h' header is included in your code base")
+      |         ^
+
+/home/michael/projects/cpp/p4t/source/main.cpp should add these lines:
+#include <string.h>         // for strsignal
+#include <cstdlib>          // for exit
+#include <ostream>          // for basic_ostream, operator<<
+#include "client_result.h"  // for ClientResult
+#include "test_result.h"    // for TestResult
+
+/home/michael/projects/cpp/p4t/source/main.cpp should remove these lines:
+
+The full include-list for /home/michael/projects/cpp/p4t/source/main.cpp:
+#include <dbg.h>            // for type_name, DBG_MAP_3, DebugOutput, dbg
+#include <string.h>         // for strsignal
+#include <CLI/CLI.hpp>      // for App, Option::expected, Option::type_size
+#include <csignal>          // for signal, sig_atomic_t, SIGINT, SIGTERM
+#include <cstdlib>          // for exit
+#include <ostream>          // for basic_ostream, operator<<
+#include <string>           // for basic_string, char_traits, operator<<
+#include <vector>           // for vector
+#include "client_result.h"  // for ClientResult
+#include "log.h"            // for ERROR, PRINT, WARN, INFO
+#include "p4t.h"            // for P4T
+#include "test_result.h"    // for TestResult
+#include "thread_pool.h"    // for ThreadPool
+---
+
+
+/home/michael/projects/cpp/p4t/include/p4t/p4t.h should add these lines:
+#include <stdint.h>           // for int32_t
+#include <mutex>              // for mutex
+#include "result.h"           // for Result
+class Error;
+class StrBuf;
+
+/home/michael/projects/cpp/p4t/include/p4t/p4t.h should remove these lines:
+
+The full include-list for /home/michael/projects/cpp/p4t/include/p4t/p4t.h:
+#include <stdint.h>           // for int32_t
+#include <mutex>              // for mutex
+#include <string>             // for string
+#include <vector>             // for vector
+#include "changes_result.h"   // for ChangesResult
+#include "client_result.h"    // for ClientResult
+#include "describe_result.h"  // for DescribeResult
+#include "file_map.h"         // for FileMap
+#include "filelog_result.h"   // for FileLogResult
+#include "info_result.h"      // for InfoResult
+#include "p4/clientapi.h"     // for ClientApi
+#include "print_result.h"     // for PrintResult
+#include "result.h"           // for Result
+#include "sizes_result.h"     // for SizesResult
+#include "stream_result.h"    // for StreamResult
+#include "sync_result.h"      // for SyncResult
+#include "test_result.h"      // for TestResult
+#include "users_result.h"     // for UsersResult
+class Error;
+class StrBuf;
+---
+
+/home/michael/projects/cpp/p4t/source/p4t.cpp should add these lines:
+#include <chrono>           // for seconds
+#include <cstdlib>          // for exit
+#include "p4/error.h"       // for Error
+#include "p4/strbuf.h"      // for StrBuf
+
+/home/michael/projects/cpp/p4t/source/p4t.cpp should remove these lines:
+
+The full include-list for /home/michael/projects/cpp/p4t/source/p4t.cpp:
+#include "p4t.h"
+#include <chrono>           // for seconds
+#include <csignal>          // for signal, SIGINT, SIG_DFL
+#include <cstdlib>          // for exit
+#include <mutex>            // for mutex, unique_lock
+#include <string>           // for basic_string, allocator, string, operator<<
+#include <thread>           // for sleep_for
+#include <vector>           // for vector
+#include "log.h"            // for ERROR, INFO, WARN
+#include "p4/clientapi.h"   // for ClientApi
+#include "p4/error.h"       // for Error
+#include "p4/p4libs.h"      // for P4Libraries, P4LibrariesInits
+#include "p4/signaler.h"    // for Signaler, signaler
+#include "p4/strbuf.h"      // for StrBuf
+#include "std_helpers.h"    // for STDHelpers
+#include "stream_result.h"  // for StreamResult
+---
+
+
+/home/michael/projects/cpp/p4t/include/p4t/thread_pool.h should add these lines:
+#include <exception>           // for exception_ptr
+#include <mutex>               // for mutex
+#include <string>              // for basic_string, string
+#include "p4t.h"               // for P4T
+
+/home/michael/projects/cpp/p4t/include/p4t/thread_pool.h should remove these lines:
+- class P4T;  // lines 10-10
+
+The full include-list for /home/michael/projects/cpp/p4t/include/p4t/thread_pool.h:
+#include <atomic>              // for atomic
+#include <condition_variable>  // for condition_variable
+#include <deque>               // for deque
+#include <exception>           // for exception_ptr
+#include <functional>          // for function
+#include <mutex>               // for mutex
+#include <string>              // for basic_string, string
+#include <thread>              // for thread
+#include <vector>              // for vector
+#include "p4t.h"               // for P4T
+---
+
+(/home/michael/projects/cpp/p4t/source/thread_pool.cpp has correct #includes/fwd-decls)
+
+
+/home/michael/projects/cpp/p4t/include/p4t/utils/std_helpers.h should add these lines:
+#include <stddef.h>  // for size_t
+
+/home/michael/projects/cpp/p4t/include/p4t/utils/std_helpers.h should remove these lines:
+
+The full include-list for /home/michael/projects/cpp/p4t/include/p4t/utils/std_helpers.h:
+#include <stddef.h>  // for size_t
+#include <array>     // for array
+#include <string>    // for string
+#include <vector>    // for vector
+---
+
+(/home/michael/projects/cpp/p4t/source/utils/std_helpers.cpp has correct #includes/fwd-decls)
+
+
+(/home/michael/projects/cpp/p4t/include/p4t/utils/time_helpers.h has correct #includes/fwd-decls)
+
+(/home/michael/projects/cpp/p4t/source/utils/time_helpers.cpp has correct #includes/fwd-decls)
+
+
+(/home/michael/projects/cpp/p4t/include/p4t/utils/timer.h has correct #includes/fwd-decls)
+
+(/home/michael/projects/cpp/p4t/source/utils/timer.cpp has correct #includes/fwd-decls)
+

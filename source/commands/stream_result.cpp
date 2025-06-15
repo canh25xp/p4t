@@ -1,9 +1,11 @@
+#include "stream_result.h"
+
 #include <iostream>
+#include <string>
 #include <vector>
 
-#include <p4/clientapi.h>
+#include "p4/clientapi.h"
 
-#include "stream_result.h"
 #include "std_helpers.h"
 
 void StreamResult::OutputStat(StrDict *varList) {

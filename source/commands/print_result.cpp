@@ -1,6 +1,6 @@
-#include <p4/clientapi.h>
-
 #include "print_result.h"
+
+#include "p4/clientapi.h"
 
 void PrintResult::OutputStat(StrDict *varList) {
     m_Data.push_back(PrintData{});

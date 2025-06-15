@@ -1,6 +1,10 @@
-#include <p4/clientapi.h>
-
 #include "file_map.h"
+
+#include <stddef.h>
+#include <memory>
+
+#include "p4/clientapi.h"
+
 #include "log.h"
 
 FileMap::FileMap()

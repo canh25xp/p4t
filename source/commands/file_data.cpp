@@ -1,4 +1,8 @@
 #include "file_data.h"
+
+#include <ostream>
+#include <utility>
+
 #include "log.h"
 #include "std_helpers.h"
 

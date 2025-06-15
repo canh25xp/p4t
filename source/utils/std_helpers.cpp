@@ -1,6 +1,8 @@
 #include "std_helpers.h"
+
 #include <cstddef>
 #include <string>
+#include <array>
 #include <vector>
 
 bool STDHelpers::EndsWith(const std::string &str, const std::string &checkStr) {
